@@ -11,9 +11,3 @@ logs/
 *.log
 .claude-replay.*
 .tmp-*
-src/imports/f696a615-47f2-4fb7-97bb-63945106d40b.png
-src/imports/heading-v2.png
-src/imports/ZT_Icon-Stroke-1.png
-src/imports/ZT_Icon-Stroke.png
-src/imports/ZT_Icon.png
-src/imports/ZT_Payments_logo.png
