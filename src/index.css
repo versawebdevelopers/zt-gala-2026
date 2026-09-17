@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Bodoni+Moda:ital,opsz@0,6..96;1,6..96&display=swap');
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Quiche Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Quiche Sans Bold'), local('QuicheSans-Bold');
+}
+
+@font-face {
+  font-family: 'Brother 1816';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Brother 1816'), local('Brother1816');
+}
+
+@font-face {
+  font-family: 'Brother 1816';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Brother 1816 Light'), local('Brother1816-Light');
+}
+
+@font-face {
+  font-family: 'Brother 1816';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Brother 1816 Medium'), local('Brother1816-Medium');
+}
+
+@font-face {
+  font-family: 'Brother 1816';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Brother 1816 Italic'), local('Brother1816-Italic');
+}
+
+/* Bodoni Moda for all numerals (0–9), across every font stack */
+@font-face {
+  font-family: 'Quiche Sans';
+  src: url('https://fonts.gstatic.com/s/bodonimoda/v28/aFTH7PxzY382XsXX63LUYL6GYFksw-NIrKp-rPr1KOxQ.woff2') format('woff2');
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brother 1816';
+  src: url('https://fonts.gstatic.com/s/bodonimoda/v28/aFTH7PxzY382XsXX63LUYL6GYFksw-NIrKp-rPr1KOxQ.woff2') format('woff2');
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('https://fonts.gstatic.com/s/bodonimoda/v28/aFTH7PxzY382XsXX63LUYL6GYFksw-NIrKp-rPr1KOxQ.woff2') format('woff2');
+  unicode-range: U+0030-0039;
+  font-display: swap;
+}
+
+@theme {
+  --font-quiche: 'Playfair Display', 'Georgia', serif;
+  --font-brother: 'Brother 1816', 'Helvetica Neue', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Brother 1816', 'Helvetica Neue', sans-serif;
+}
+
+/* Hide scrollbar by default, show while scrolling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(198, 162, 97, 0.3) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(198, 162, 97, 0.3);
+  border-radius: 2px;
+}
