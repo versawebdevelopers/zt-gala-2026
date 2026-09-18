@@ -42,10 +42,10 @@ const MOSAIC = [
 ]
 
 const TESTIMONIALS = [
-  { name: 'Angel Gonzalez', thumbnail: testimonial1 },
-  { name: 'Earon Ramirez', thumbnail: testimonial2 },
-  { name: 'Jael Santos', thumbnail: testimonial3 },
-  { name: 'Lennex Minor', thumbnail: testimonial4 },
+  { name: 'Angel Gonzalez', thumbnail: testimonial1, videoUrl: 'https://www.youtube.com/watch?v=ITSkVKs5RA0' },
+  { name: 'Earon Ramirez', thumbnail: testimonial2, videoUrl: 'https://www.youtube.com/watch?v=x7NpK82ACPQ' },
+  { name: 'Jael Santos', thumbnail: testimonial3, videoUrl: 'https://www.youtube.com/watch?v=FNgLg9oD28Q' },
+  { name: 'Lennex Minor', thumbnail: testimonial4, videoUrl: 'https://www.youtube.com/watch?v=ub18Z5G_YpY' },
 ]
 
 export default function FoundationSection() {
@@ -122,16 +122,16 @@ export default function FoundationSection() {
 
         <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: 'repeat(3, 240px)' }}>
           <CarouselSlot pair={MOSAIC[0].pair} delay={MOSAIC[0].delay} col="1 / 4" row="1 / 2" />
-          <VideoCarouselSlot thumbnail={TESTIMONIALS[2].thumbnail} name={TESTIMONIALS[2].name} altImage={ztbLL1} col="4 / 6" row="1 / 2" delay={1.2} />
+          <VideoCarouselSlot thumbnail={TESTIMONIALS[2].thumbnail} name={TESTIMONIALS[2].name} videoUrl={TESTIMONIALS[2].videoUrl} altImage={ztbLL1} col="4 / 6" row="1 / 2" delay={1.2} />
           <CarouselSlot pair={MOSAIC[2].pair} delay={MOSAIC[2].delay} col="6 / 7" row="1 / 2" />
           <CarouselSlot pair={MOSAIC[3].pair} delay={MOSAIC[3].delay} col="1 / 2" row="2 / 3" />
-          <VideoCarouselSlot thumbnail={TESTIMONIALS[0].thumbnail} name={TESTIMONIALS[0].name} altImage={ztbL2} col="2 / 4" row="2 / 3" delay={3.0} />
-          <CarouselSlot pair={[ztbL4, ztbL1]} delay={2.5} col="4 / 5" row="2 / 3" />
-          <VideoCarouselSlot thumbnail={TESTIMONIALS[3].thumbnail} name={TESTIMONIALS[3].name} altImage={ztbL6} col="5 / 7" row="2 / 3" delay={0.6} />
+          <VideoCarouselSlot thumbnail={TESTIMONIALS[0].thumbnail} name={TESTIMONIALS[0].name} videoUrl={TESTIMONIALS[0].videoUrl} altImage={ztbL2} col="2 / 4" row="2 / 3" delay={3.0} />
+          <CarouselSlot pair={[ztbV1, ztbV6]} delay={2.5} col="4 / 5" row="2 / 3" />
+          <VideoCarouselSlot thumbnail={TESTIMONIALS[3].thumbnail} name={TESTIMONIALS[3].name} videoUrl={TESTIMONIALS[3].videoUrl} altImage={ztbL6} col="5 / 7" row="2 / 3" delay={0.6} />
           <CarouselSlot pair={MOSAIC[6].pair} delay={MOSAIC[6].delay} col="1 / 3" row="3 / 4" />
           <CarouselSlot pair={MOSAIC[7].pair} delay={MOSAIC[7].delay} col="3 / 4" row="3 / 4" />
-          <VideoCarouselSlot thumbnail={TESTIMONIALS[1].thumbnail} name={TESTIMONIALS[1].name} altImage={ztbLW2} col="4 / 6" row="3 / 4" delay={4.5} />
-          <CarouselSlot pair={[ztbL8, ztbL5]} delay={1.8} col="6 / 7" row="3 / 4" />
+          <VideoCarouselSlot thumbnail={TESTIMONIALS[1].thumbnail} name={TESTIMONIALS[1].name} videoUrl={TESTIMONIALS[1].videoUrl} altImage={ztbLW2} col="4 / 6" row="3 / 4" delay={4.5} />
+          <CarouselSlot pair={[ztbV3, ztbV5]} delay={1.8} col="6 / 7" row="3 / 4" />
         </div>
       </div>
     </section>

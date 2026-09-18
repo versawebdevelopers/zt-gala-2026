@@ -93,7 +93,7 @@ export default function HeroSection() {
           </a>
           <div className="relative">
             <a
-              href="https://passkey.com"
+              href="https://book.passkey.com/gt/221294688?gtid=1a0c291fbd420562cd110013932d5bf1"
               target="_blank"
               rel="noopener noreferrer"
               className="block px-12 py-4 text-sm tracking-[0.3em] uppercase font-light transition-all duration-300"

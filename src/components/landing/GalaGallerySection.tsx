@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { VideoModal } from './VideoModal'
+import gala2025Recap from '@/imports/2025 post Gala recap video.mp4'
 import pgVid1 from '@/imports/2024_Gala_-_Video_Thumbnail-1.png'
 import pgL1 from '@/imports/2024_Gala_Photo_Collage-Landscape-1-1.png'
 import pgL2 from '@/imports/2024_Gala_Photo_Collage-Landscape-2-1.png'
@@ -158,6 +160,7 @@ export function VideoCarouselSlot({
   col,
   row,
   delay,
+  videoUrl,
 }: {
   thumbnail: string
   name: string
@@ -165,8 +168,10 @@ export function VideoCarouselSlot({
   col: string
   row: string
   delay: number
+  videoUrl?: string
 }) {
   const [active, setActive] = useState(0)
+  const [modalOpen, setModalOpen] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const ms = useRef(5000 + Math.random() * 4000)
 
@@ -181,7 +186,11 @@ export function VideoCarouselSlot({
   }, [delay])
 
   return (
-    <div style={{ gridColumn: col, gridRow: row }} className="relative overflow-hidden bg-stone-950 group cursor-pointer">
+    <div
+      style={{ gridColumn: col, gridRow: row }}
+      className="relative overflow-hidden bg-stone-950 group cursor-pointer"
+      onClick={() => videoUrl && setModalOpen(true)}
+    >
       <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out" style={{ opacity: active === 0 ? 1 : 0 }}>
         <img src={thumbnail} alt={`${name} testimonial`} className="w-full h-full object-cover object-center" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(43,27,12,0.75) 0%, rgba(43,27,12,0.12) 55%, transparent 100%)' }} />
@@ -203,6 +212,8 @@ export function VideoCarouselSlot({
       <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out" style={{ opacity: active === 1 ? 1 : 0 }}>
         <img src={altImage} alt="ZT Baseball Foundation" className="w-full h-full object-cover" />
       </div>
+
+      {modalOpen && videoUrl && <VideoModal url={videoUrl} onClose={() => setModalOpen(false)} />}
     </div>
   )
 }
@@ -240,10 +251,10 @@ export default function GalaGallerySection() {
 
         <div className="grid gap-2 mb-10" style={{ gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: 'repeat(3, 240px)' }}>
           <CarouselSlot pair={[pgL3, pgL9]} delay={0.0} col="1 / 4" row="1 / 2" objectPosition="center" />
-          <VideoCarouselSlot thumbnail={pgVid1} name="2024 Gala Highlights" altImage={pgL8} col="4 / 6" row="1 / 2" delay={1.2} />
+          <VideoCarouselSlot thumbnail={pgVid1} name="2024 Gala Highlights" altImage={pgL8} col="4 / 6" row="1 / 2" delay={1.2} videoUrl="https://vimeo.com/1081180835/14f1115c37" />
           <CarouselSlot pair={[pgVert1, pgVert2]} delay={2.5} col="6 / 7" row="1 / 2" objectPosition="top" />
           <CarouselSlot pair={[pgVert3, pgVert4]} delay={1.0} col="1 / 2" row="2 / 3" objectPosition="top" />
-          <VideoCarouselSlot thumbnail={pgVid2} name="2025 Gala Highlights" altImage={pgL4} col="2 / 4" row="2 / 3" delay={3.0} />
+          <VideoCarouselSlot thumbnail={pgVid2} name="2025 Gala Highlights" altImage={pgL4} col="2 / 4" row="2 / 3" delay={3.0} videoUrl={gala2025Recap} />
           <CarouselSlot pair={[pgVert5, pgVert6]} delay={2.0} col="4 / 5" row="2 / 3" objectPosition="top" />
           <CarouselSlot pair={[pgL7, pgL5]} delay={0.6} col="5 / 7" row="2 / 3" objectPosition="center" />
           <CarouselSlot pair={[pgL11, pgL20]} delay={3.0} col="1 / 3" row="3 / 4" objectPosition="top 15%" />

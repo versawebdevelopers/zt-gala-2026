@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'wouter'
+import { VideoModal } from '@/components/landing/VideoModal'
+import gala2025Recap from '@/imports/2025 post Gala recap video.mp4'
 
 // ── Gala 2024 photos
 import gala24Video  from '@/imports/2024_Gala_-_Video_Thumbnail.png'
@@ -99,10 +101,15 @@ function CarouselSlot({
 }
 
 // ─── VideoSlide ───────────────────────────────────────────────────────────────
-function VideoSlide({ label, src, year }: { label: string; src?: string; year: string }) {
+function VideoSlide({ label, src, year, videoUrl }: { label: string; src?: string; year: string; videoUrl?: string }) {
+  const [modalOpen, setModalOpen] = useState(false)
+
   return (
-    <div className="relative overflow-hidden group cursor-pointer flex-shrink-0 w-full bg-stone-950"
-      style={{ aspectRatio: '16 / 7' }}>
+    <div
+      className="relative overflow-hidden group cursor-pointer flex-shrink-0 w-full bg-stone-950"
+      style={{ aspectRatio: '16 / 7' }}
+      onClick={() => videoUrl && setModalOpen(true)}
+    >
       {src ? (
         <img src={src} alt={label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
       ) : (
@@ -121,6 +128,8 @@ function VideoSlide({ label, src, year }: { label: string; src?: string; year: s
         <p className="text-[9px] tracking-[0.4em] uppercase mb-1" style={{ color: GOLD }}>{year} Recap</p>
         <p className="text-lg font-light tracking-wide" style={{ color: CREAM }}>{label}</p>
       </div>
+
+      {modalOpen && videoUrl && <VideoModal url={videoUrl} onClose={() => setModalOpen(false)} />}
     </div>
   )
 }
@@ -156,8 +165,8 @@ const GALA_PLACEHOLDER_MOSAIC: { pair: [null, null]; delay: number; col: string;
 ]
 
 const GALA_YEARS = [
-  { year: '2025', label: 'Watch the 2025 Chairman\'s Gala Highlights', src: undefined },
-  { year: '2024', label: 'Watch the 2024 Chairman\'s Gala Highlights', src: gala24Video },
+  { year: '2025', label: 'Watch the 2025 Chairman\'s Gala Highlights', src: undefined, videoUrl: gala2025Recap },
+  { year: '2024', label: 'Watch the 2024 Chairman\'s Gala Highlights', src: gala24Video, videoUrl: 'https://vimeo.com/1081180835/14f1115c37' },
   { year: '2023', label: 'Watch the 2023 Chairman\'s Gala Highlights', src: undefined },
   { year: '2022', label: 'Watch the 2022 Chairman\'s Gala Highlights', src: undefined },
 ]
@@ -251,7 +260,7 @@ export default function Gallery() {
             style={{ display: 'flex', transform: `translateX(-${sliderIdx * 100}%)` }}>
             {GALA_YEARS.map((g) => (
               <div key={g.year} style={{ minWidth: '100%' }}>
-                <VideoSlide label={g.label} src={g.src} year={g.year} />
+                <VideoSlide label={g.label} src={g.src} year={g.year} videoUrl={g.videoUrl} />
               </div>
             ))}
           </div>

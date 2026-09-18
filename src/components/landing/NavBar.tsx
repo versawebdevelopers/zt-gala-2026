@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import ztwayLogo from '@/imports/ZTWAY_Logo.png'
 
 const GOLD = '#C6A261'
+const GOLD_LIGHT = '#E2C98F'
 const OBSIDIAN = '#2B1B0C'
 const CREAM = '#FCF9F4'
 const GOLD_DIM = 'rgba(198,162,97,0.28)'
@@ -67,18 +68,34 @@ export default function NavBar() {
         </div>
 
         <div className="hidden lg:flex items-start gap-4">
-          <span
-            className="px-6 py-2.5 text-[11px] tracking-[0.25em] uppercase font-medium"
-            style={{ background: GOLD, color: OBSIDIAN, cursor: 'default' }}
+          <a
+            href="#rsvp"
+            className="px-6 py-2.5 text-[11px] tracking-[0.25em] uppercase font-medium transition-colors duration-300"
+            style={{ background: GOLD, color: OBSIDIAN }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = GOLD_LIGHT)}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = GOLD)}
           >
             RSVP
-          </span>
-          <span
-            className="block px-5 py-2.5 text-[11px] tracking-[0.2em] uppercase font-light"
-            style={{ border: `1px solid ${GOLD_DIM}`, color: GOLD, cursor: 'default' }}
+          </a>
+          <a
+            href="https://book.passkey.com/gt/221294688?gtid=1a0c291fbd420562cd110013932d5bf1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-5 py-2.5 text-[11px] tracking-[0.2em] uppercase font-light transition-all duration-300"
+            style={{ border: `1px solid ${GOLD_DIM}`, color: GOLD }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLElement
+              el.style.background = 'rgba(198,162,97,0.10)'
+              el.style.borderColor = GOLD
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLElement
+              el.style.background = 'transparent'
+              el.style.borderColor = GOLD_DIM
+            }}
           >
             <strong>Book Hotel Room</strong>
-          </span>
+          </a>
         </div>
 
         <button
@@ -122,12 +139,24 @@ export default function NavBar() {
             ),
           )}
           <div className="flex gap-3 mt-6 items-start">
-            <span
+            <a
+              href="#rsvp"
               className="flex-1 text-center py-3 text-[11px] tracking-widest uppercase"
-              style={{ background: GOLD, color: OBSIDIAN, cursor: 'default' }}
+              style={{ background: GOLD, color: OBSIDIAN }}
+              onClick={() => setMobileMenuOpen(false)}
             >
               RSVP
-            </span>
+            </a>
+            <a
+              href="https://passkey.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center py-3 text-[11px] tracking-widest uppercase"
+              style={{ border: `1px solid ${GOLD_DIM}`, color: GOLD }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <strong>Book Hotel Room</strong>
+            </a>
           </div>
         </div>
       )}
