@@ -43,7 +43,7 @@ export default function NavBar() {
           <img src={ztwayLogo} alt="ZTWAY" className="h-10 w-auto object-contain" />
         </a>
 
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden md:flex items-center gap-7">
           {NAV_LINKS.map((link) =>
             link.href ? (
               <a
@@ -68,7 +68,7 @@ export default function NavBar() {
           )}
         </div>
 
-        <div className="hidden lg:flex items-start gap-4">
+        <div className="hidden md:flex items-start gap-4">
           <a
             href="#rsvp"
             className="px-6 py-2.5 text-[11px] tracking-[0.25em] uppercase font-medium transition-colors duration-300"
@@ -100,7 +100,7 @@ export default function NavBar() {
         </div>
 
         <button
-          className="lg:hidden p-2 flex flex-col gap-1.5"
+          className="md:hidden p-2 flex flex-col gap-1.5"
           onClick={() => setMobileMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -112,7 +112,7 @@ export default function NavBar() {
 
         {mobileMenuOpen && (
           <div
-            className="lg:hidden px-6 py-6 pb-28"
+            className="md:hidden px-6 py-6 pb-28"
             style={{
               background: 'rgba(43,27,12,0.98)',
               borderTop: `1px solid ${GOLD_DIM}`,
@@ -156,14 +156,14 @@ export default function NavBar() {
                 style={{ border: `1px solid ${GOLD_DIM}`, color: GOLD }}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <strong>Book Hotel Room</strong>
+                <strong>Book Hotel</strong>
               </a>
             </div>
           </div>
         )}
       </nav>
 
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex gap-2 border-t border-[#c6a26133] bg-[#1b0e04]/95 px-3 py-2.5 backdrop-blur-md shadow-[0_-8px_18px_rgba(0,0,0,0.2)]">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex gap-2 border-t border-[#c6a26133] bg-[#1b0e04]/95 px-3 py-2.5 backdrop-blur-md shadow-[0_-8px_18px_rgba(0,0,0,0.2)]">
         <a
           href="#rsvp"
           className="flex-1 rounded-sm px-2 py-3 text-center text-[11px] font-medium tracking-[0.14em] uppercase"

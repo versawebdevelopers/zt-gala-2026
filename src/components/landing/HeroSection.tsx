@@ -61,7 +61,7 @@ export default function HeroSection() {
           ].map((item, i, arr) => (
             <div
               key={item.label}
-              className="flex w-full flex-col items-center justify-start text-center sm:flex-1 sm:items-start sm:text-left"
+              className="flex w-full flex-col items-center justify-start text-center sm:flex-1"
               style={
                 i < arr.length - 1
                   ? { paddingRight: '0', borderRight: 'none', marginRight: '0', paddingBottom: '0' }
@@ -89,7 +89,7 @@ export default function HeroSection() {
           ))}
         </div>
 
-        <div className="hidden sm:flex flex-col sm:flex-row gap-4 items-start">
+        <div className="hidden md:flex flex-col sm:flex-row gap-4 items-start">
           <a
             href="#rsvp"
             className="px-12 py-4 text-sm tracking-[0.3em] uppercase font-medium transition-colors duration-300"
