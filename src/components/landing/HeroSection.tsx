@@ -29,6 +29,15 @@ export default function HeroSection() {
               -webkit-text-stroke: 0.5px rgba(27,14,4,0.85);
               paint-order: stroke fill;
             }
+            .hero-detail-label {
+              font-size: 14px !important;
+            }
+            .hero-detail-primary {
+              font-size: 1.4rem !important;
+            }
+            .hero-detail-secondary {
+              font-size: 1.1rem !important;
+            }
           }
         `}</style>
         <img
@@ -68,16 +77,16 @@ export default function HeroSection() {
                   : {}
               }
             >
-              <p className="hero-detail-text text-[12px] tracking-[0.32em] uppercase mb-1.5 sm:text-[13px] sm:tracking-[0.5em] sm:mb-3" style={{ color: GOLD, opacity: 0.75 }}>
+              <p className="hero-detail-text hero-detail-label text-[14px] tracking-[0.32em] uppercase mb-1.5 sm:text-[15px] sm:tracking-[0.5em] sm:mb-3" style={{ color: GOLD, opacity: 0.75 }}>
                 {item.label}
               </p>
               {item.lines.map((line, j) => (
                 <p
                   key={j}
-                  className="hero-detail-text font-quiche leading-snug"
+                  className={`hero-detail-text font-quiche leading-snug ${j === 0 ? 'hero-detail-primary' : 'hero-detail-secondary'}`}
                   style={{
                     color: j === 0 ? CREAM : 'rgba(252,249,244,0.55)',
-                    fontSize: j === 0 ? 'clamp(1.15rem, 2vw, 1.5rem)' : 'clamp(0.95rem, 1.4vw, 1.05rem)',
+                    fontSize: j === 0 ? 'clamp(1.4rem, 2.4vw, 1.8rem)' : 'clamp(1.1rem, 1.7vw, 1.3rem)',
                     marginBottom: j < item.lines.length - 1 ? '0.08rem' : 0,
                     whiteSpace: 'nowrap',
                   }}
