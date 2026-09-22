@@ -19,6 +19,7 @@ import ztbL5 from '@/imports/ZTB_Photo_Collage-Landscape-5.png'
 import ztbL6 from '@/imports/ZTB_Photo_Collage-Landscape-6.png'
 import ztbL7 from '@/imports/ZTB_Photo_Collage-Landscape-7.png'
 import ztbL8 from '@/imports/ZTB_Photo_Collage-Landscape-8.png'
+import ztbL3 from '@/imports/ZTB_Photo_Collage-Landscape-3.png'
 import testimonial1 from '@/imports/ZTB_Testimonial_Thumbnail-1b.png'
 import testimonial2 from '@/imports/ZTB_Testimonial_Thumbnail-2b.png'
 import testimonial3 from '@/imports/ZTB_Testimonial_Thumbnail-3b.png'
@@ -30,7 +31,7 @@ const GOLD = '#C6A261'
 const CREAM = '#FCF9F4'
 
 const MOSAIC = [
-  { pair: [ztbLW1, ztbLW1b], delay: 0.0, col: '1 / 4', row: '1 / 2' },
+  { pair: [ztbLW1, ztbLW2], delay: 0.0, col: '1 / 4', row: '1 / 2' },
   { pair: [ztbLL1, ztbL7], delay: 1.8, col: '4 / 6', row: '1 / 2' },
   { pair: [ztbV1, ztbV2], delay: 3.5, col: '6 / 7', row: '1 / 2' },
   { pair: [ztbV3, ztbV4], delay: 2.2, col: '1 / 2', row: '2 / 3' },
@@ -78,17 +79,17 @@ export default function FoundationSection() {
 
       <div className="absolute bottom-0 left-0 pointer-events-none" style={{ width: '45%', height: '45%', background: 'radial-gradient(ellipse at 0% 100%, rgba(198,162,97,0.55) 0%, rgba(198,162,97,0.30) 30%, rgba(198,162,97,0.10) 55%, transparent 72%)' }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-start mb-12 sm:mb-20">
           <div>
-            <p className="text-[11px] tracking-[0.4em] uppercase mb-5 font-light" style={{ color: GOLD }}>
+            <p className="text-[12px] tracking-[0.3em] uppercase mb-3 font-light sm:text-[13px] sm:tracking-[0.4em]" style={{ color: GOLD }}>
               Giving Back
             </p>
-            <h2 className="font-quiche text-4xl lg:text-5xl leading-tight mb-6" style={{ color: CREAM }}>
+            <h2 className="font-quiche text-3xl sm:text-4xl lg:text-5xl leading-tight mb-3 sm:mb-6" style={{ color: CREAM }}>
               Supporting the
             </h2>
-            <img src={ztaWordMark} alt="ZT Athletics Foundation" className="mb-8" style={{ width: 320, mixBlendMode: 'screen' }} />
-            <p className="text-sm leading-8 mb-6" style={{ color: 'rgba(252,249,244,0.60)' }}>
+            <img src={ztaWordMark} alt="ZT Athletics Foundation" className="mb-5 w-[210px] sm:w-[280px] lg:w-[320px]" style={{ mixBlendMode: 'screen' }} />
+            <p className="text-base leading-7 sm:text-sm sm:leading-8 mb-6" style={{ color: 'rgba(252,249,244,0.60)' }}>
               The ZT Athletics Foundation fosters youth development and community engagement through sports, integrating teamwork and discipline into young athletes' lives while promoting physical fitness and personal growth. It offers various programs and clinics, connecting communities with opportunities for skill development and character building.
             </p>
 
@@ -98,11 +99,11 @@ export default function FoundationSection() {
                 { num: '48', label: 'Partner Schools' },
                 { num: '$2.1M', label: 'Raised to Date' },
               ].map((stat) => (
-                <div key={stat.label} className="p-5 text-center" style={{ border: 'none' }}>
-                  <p className="font-quiche text-2xl lg:text-3xl mb-1" style={{ color: GOLD }}>
+                <div key={stat.label} className="p-4 text-center sm:p-5" style={{ border: 'none' }}>
+                  <p className="font-quiche text-2xl sm:text-3xl lg:text-4xl mb-1" style={{ color: GOLD }}>
                     {stat.num}
                   </p>
-                  <p className="text-[9px] tracking-[0.2em] uppercase" style={{ color: 'rgba(252,249,244,0.45)' }}>
+                  <p className="text-[10px] tracking-[0.15em] uppercase sm:text-[11px] sm:tracking-[0.2em]" style={{ color: 'rgba(252,249,244,0.45)' }}>
                     {stat.label}
                   </p>
                 </div>
@@ -110,28 +111,46 @@ export default function FoundationSection() {
             </div>
           </div>
 
-          <div className="lg:self-center p-10 lg:p-14" style={{ background: 'rgba(125,91,36,0.05)', borderTop: `1px solid rgba(198,162,97,0.18)`, borderRight: `1px solid rgba(198,162,97,0.18)`, borderBottom: `1px solid rgba(198,162,97,0.18)`, borderLeft: `3px solid ${GOLD}` }}>
-            <p className="font-quiche text-2xl lg:text-3xl leading-relaxed mb-6" style={{ color: CREAM }}>
-              "We're building more than ballplayers, we're building young leaders for the future."
+          <div className="lg:self-center p-6 sm:p-10 lg:p-14" style={{ background: 'rgba(125,91,36,0.05)', borderTop: `1px solid rgba(198,162,97,0.18)`, borderRight: `1px solid rgba(198,162,97,0.18)`, borderBottom: `1px solid rgba(198,162,97,0.18)`, borderLeft: `3px solid ${GOLD}` }}>
+            <p className="font-quiche text-xl leading-relaxed mb-5 sm:text-2xl lg:text-3xl lg:mb-6" style={{ color: CREAM }}>
+              "We're building more than ballplayers; we're building young leaders for the future."
             </p>
-            <p className="text-[10px] tracking-[0.3em] uppercase" style={{ color: GOLD }}>
+            <p className="text-[11px] tracking-[0.24em] uppercase sm:text-[12px] sm:tracking-[0.3em]" style={{ color: GOLD }}>
               — <strong>Taseer Badar, Founder</strong>
             </p>
           </div>
         </div>
 
-        <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: 'repeat(3, 240px)' }}>
+        <style>{`
+          .foundation-grid { display: grid; gap: 8px; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: repeat(3, 240px); }
+          @media (max-width: 767px) {
+            .foundation-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
+            .foundation-grid > * { grid-column: auto !important; grid-row: auto !important; min-height: 200px; }
+            .foundation-grid > :nth-child(1),
+            .foundation-grid > :nth-child(7),
+            .foundation-grid > :nth-child(8) { grid-column: 1 / -1 !important; min-height: 220px; }
+            .foundation-grid > :nth-child(2),
+            .foundation-grid > :nth-child(5),
+            .foundation-grid > :nth-child(6),
+            .foundation-grid > :nth-child(9) { order: 1; min-height: 180px; }
+            .foundation-grid > :nth-child(1),
+            .foundation-grid > :nth-child(7),
+            .foundation-grid > :nth-child(8) { order: 2; }
+            .foundation-grid > :nth-child(3),
+            .foundation-grid > :nth-child(4) { order: 3; min-height: 280px; }
+          }
+        `}</style>
+
+        <div className="foundation-grid">
           <CarouselSlot pair={MOSAIC[0].pair} delay={MOSAIC[0].delay} col="1 / 4" row="1 / 2" />
-          <VideoCarouselSlot thumbnail={TESTIMONIALS[2].thumbnail} name={TESTIMONIALS[2].name} videoUrl={TESTIMONIALS[2].videoUrl} altImage={ztbLL1} col="4 / 6" row="1 / 2" delay={1.2} />
+          <VideoCarouselSlot thumbnail={TESTIMONIALS[2].thumbnail} name={TESTIMONIALS[2].name} videoUrl={TESTIMONIALS[2].videoUrl} altImage={ztbL7} col="4 / 6" row="1 / 2" delay={1.2} />
           <CarouselSlot pair={MOSAIC[2].pair} delay={MOSAIC[2].delay} col="6 / 7" row="1 / 2" />
           <CarouselSlot pair={MOSAIC[3].pair} delay={MOSAIC[3].delay} col="1 / 2" row="2 / 3" />
           <VideoCarouselSlot thumbnail={TESTIMONIALS[0].thumbnail} name={TESTIMONIALS[0].name} videoUrl={TESTIMONIALS[0].videoUrl} altImage={ztbL2} col="2 / 4" row="2 / 3" delay={3.0} />
-          <CarouselSlot pair={[ztbV1, ztbV6]} delay={2.5} col="4 / 5" row="2 / 3" />
-          <VideoCarouselSlot thumbnail={TESTIMONIALS[3].thumbnail} name={TESTIMONIALS[3].name} videoUrl={TESTIMONIALS[3].videoUrl} altImage={ztbL6} col="5 / 7" row="2 / 3" delay={0.6} />
+          <VideoCarouselSlot thumbnail={TESTIMONIALS[3].thumbnail} name={TESTIMONIALS[3].name} videoUrl={TESTIMONIALS[3].videoUrl} altImage={ztbL6} col="4 / 7" row="2 / 3" delay={0.6} />
           <CarouselSlot pair={MOSAIC[6].pair} delay={MOSAIC[6].delay} col="1 / 3" row="3 / 4" />
           <CarouselSlot pair={MOSAIC[7].pair} delay={MOSAIC[7].delay} col="3 / 4" row="3 / 4" />
-          <VideoCarouselSlot thumbnail={TESTIMONIALS[1].thumbnail} name={TESTIMONIALS[1].name} videoUrl={TESTIMONIALS[1].videoUrl} altImage={ztbLW2} col="4 / 6" row="3 / 4" delay={4.5} />
-          <CarouselSlot pair={[ztbV3, ztbV5]} delay={1.8} col="6 / 7" row="3 / 4" />
+          <VideoCarouselSlot thumbnail={TESTIMONIALS[1].thumbnail} name={TESTIMONIALS[1].name} videoUrl={TESTIMONIALS[1].videoUrl} altImage={ztbLL1} col="4 / 7" row="3 / 4" delay={4.5} />
         </div>
       </div>
     </section>

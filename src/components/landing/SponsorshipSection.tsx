@@ -96,6 +96,22 @@ export default function SponsorshipSection() {
         .pricing-card {
           border: 1px solid rgba(198,162,97,0.18);
           transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.3s ease;
+          overflow-x: hidden;
+        }
+        .pricing-card__list {
+          min-width: 0;
+        }
+        .pricing-card__list li {
+          min-width: 0;
+          overflow-wrap: anywhere;
+        }
+        @media (min-width: 768px) and (max-width: 1279px) {
+          .pricing-card {
+            max-height: 680px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(198,162,97,0.45) transparent;
+          }
         }
         .pricing-card:hover {
           border-color: rgba(198,162,97,1);
@@ -114,12 +130,12 @@ export default function SponsorshipSection() {
 
       <img src={sponsorshipBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
       <div className="absolute inset-0" style={{ background: 'rgba(27,14,4,0.62)' }} />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="text-center mb-16">
-          <h2 className="font-quiche text-4xl lg:text-5xl mb-4" style={{ color: '#FCF9F4' }}>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="font-quiche text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#FCF9F4' }}>
             Sponsorship
           </h2>
-          <p className="text-[10px] tracking-[0.3em] uppercase font-light" style={{ color: 'rgba(198,162,97,0.70)' }}>
+          <p className="text-[11px] tracking-[0.2em] uppercase font-light sm:text-[12px] sm:tracking-[0.3em]" style={{ color: 'rgba(198,162,97,0.70)' }}>
             For more information, please contact Thuylan Chang at{' '}
             <a
               href="mailto:thuylan@ztcorporate.com"
@@ -132,20 +148,23 @@ export default function SponsorshipSection() {
           </p>
         </div>
 
-        <div className="mb-20" style={{ position: 'relative', left: '50%', transform: 'translateX(-50%)', width: '100vw', display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 12, paddingLeft: 24, paddingRight: 24, boxSizing: 'border-box' }}>
-          {TIERS.map((tier) => (
-            <div
-              key={tier.name}
-              className="pricing-card relative flex flex-col p-8 group"
-              style={{
-                background: tier.name === 'VISIONARY' ? 'rgba(198,162,97,0.04)' : tier.featured ? 'rgba(198,162,97,0.08)' : LUX_CARD_BG,
-                boxShadow: `0 0 12px rgba(198,162,97,0.06)`,
-              }}
-            >
+        <div className="mb-12 overflow-x-auto xl:mb-20 xl:overflow-visible">
+          <div
+            className="flex min-w-[590px] gap-2.5 md:min-w-[1140px] md:gap-4 xl:min-w-0 xl:grid xl:grid-cols-6 xl:gap-3"
+          >
+            {TIERS.map((tier) => (
+              <div
+                key={tier.name}
+                className="pricing-card relative flex min-w-[170px] max-w-full flex-col p-4 group sm:min-w-[190px] md:min-w-[220px] xl:min-w-0 md:p-8"
+                style={{
+                  background: tier.name === 'VISIONARY' ? 'rgba(198,162,97,0.04)' : tier.featured ? 'rgba(198,162,97,0.08)' : LUX_CARD_BG,
+                  boxShadow: `0 0 12px rgba(198,162,97,0.06)`,
+                }}
+              >
               <div className="pricing-card__accent absolute top-0 left-0 right-0 h-[2px]" />
 
               {tier.badge && (
-                <p className="text-[9px] tracking-[0.4em] uppercase mb-5 font-medium" style={{ color: tier.badgeGold ? LUX_GOLD : LUX_MUTED }}>
+                <p className="text-[11px] tracking-[0.4em] uppercase mb-5 font-medium" style={{ color: tier.badgeGold ? LUX_GOLD : LUX_MUTED }}>
                   {tier.badge}
                 </p>
               )}
@@ -160,18 +179,19 @@ export default function SponsorshipSection() {
 
               <div className="h-px mb-6" style={{ background: GOLD, opacity: 0.45 }} />
 
-              <ul className="space-y-3 flex-grow">
+              <ul className="pricing-card__list space-y-3 flex-grow">
                 {tier.perks.map((perk) => (
-                  <li key={perk} className="flex items-start gap-3 text-[13px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.62)' }}>
+                    <li key={perk} className="flex items-start gap-3 text-[13px] leading-relaxed sm:text-[13px]" style={{ color: 'rgba(255,255,255,0.62)' }}>
                     <span className="flex-shrink-0 mt-[3px] text-[8px]" style={{ color: LUX_GOLD }}>
                       ◆
                     </span>
-                    {perk}
+                    <span className="min-w-0 flex-1">{perk}</span>
                   </li>
                 ))}
               </ul>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

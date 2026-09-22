@@ -242,14 +242,38 @@ export default function GalaGallerySection() {
     <section id="past-galas" className="relative pb-24 overflow-hidden" style={{ paddingTop: 40 }}>
       <img src={galaBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
       <div className="absolute inset-0" style={{ background: 'rgba(231,220,203,0.78)' }} />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="text-center mb-16">
-          <h2 className="font-quiche text-4xl lg:text-5xl mb-6" style={{ color: ESPRESSO }}>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="font-quiche text-3xl sm:text-4xl lg:text-5xl mb-6" style={{ color: ESPRESSO }}>
             A Look Back at Previous Galas
           </h2>
         </div>
 
-        <div className="grid gap-2 mb-10" style={{ gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: 'repeat(3, 240px)' }}>
+        <style>{`
+          .gala-grid { display: grid; gap: 8px; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: repeat(3, 240px); }
+          @media (max-width: 767px) {
+            .gala-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
+            .gala-grid > * { grid-column: auto !important; grid-row: auto !important; min-height: 220px; }
+            .gala-grid > :nth-child(1),
+            .gala-grid > :nth-child(8),
+            .gala-grid > :nth-child(9),
+            .gala-grid > :nth-child(10),
+            .gala-grid > :nth-child(11) { grid-column: 1 / -1 !important; min-height: 220px; }
+            .gala-grid > :nth-child(2),
+            .gala-grid > :nth-child(5) { order: 1; min-height: 180px; }
+            .gala-grid > :nth-child(1),
+            .gala-grid > :nth-child(8),
+            .gala-grid > :nth-child(9),
+            .gala-grid > :nth-child(10),
+            .gala-grid > :nth-child(11) { order: 2; }
+            .gala-grid > :nth-child(3),
+            .gala-grid > :nth-child(4),
+            .gala-grid > :nth-child(6),
+            .gala-grid > :nth-child(7) { order: 3; min-height: 280px; }
+          }
+        `}</style>
+
+        <div className="gala-grid mb-10">
           <CarouselSlot pair={[pgL3, pgL9]} delay={0.0} col="1 / 4" row="1 / 2" objectPosition="center" />
           <VideoCarouselSlot thumbnail={pgVid1} name="2024 Gala Highlights" altImage={pgL8} col="4 / 6" row="1 / 2" delay={1.2} videoUrl="https://vimeo.com/1081180835/14f1115c37" />
           <CarouselSlot pair={[pgVert1, pgVert2]} delay={2.5} col="6 / 7" row="1 / 2" objectPosition="top" />

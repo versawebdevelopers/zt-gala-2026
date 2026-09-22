@@ -9,7 +9,7 @@ const GOLD_DIM = 'rgba(198,162,97,0.28)'
 
 const NAV_LINKS: { label: string; href: string | null }[] = [
   { label: 'Sponsorship', href: '#sponsorships' },
-  { label: 'ZT Corporate', href: null },
+  { label: 'ZT Corporate', href: 'https://ztcorporate.com/' },
 ]
 
 export default function NavBar() {
@@ -23,21 +23,22 @@ export default function NavBar() {
   }, [])
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-      style={
-        scrolled
-          ? {
-              background: 'rgba(43,27,12,0.96)',
-              backdropFilter: 'blur(12px)',
-              borderBottom: `1px solid rgba(198,162,97,0.55)`,
-              paddingTop: '12px',
-              paddingBottom: '12px',
-            }
-          : { background: 'rgba(27,14,4,0.85)', paddingTop: '20px', paddingBottom: '20px' }
-      }
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
+    <>
+      <nav
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+        style={
+          scrolled
+            ? {
+                background: 'rgba(43,27,12,0.96)',
+                backdropFilter: 'blur(12px)',
+                borderBottom: `1px solid rgba(198,162,97,0.55)`,
+                paddingTop: '12px',
+                paddingBottom: '12px',
+              }
+            : { background: 'rgba(27,14,4,0.85)', paddingTop: '20px', paddingBottom: '20px' }
+        }
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
         <a href="#" className="flex items-center flex-shrink-0">
           <img src={ztwayLogo} alt="ZTWAY" className="h-10 w-auto object-contain" />
         </a>
@@ -109,57 +110,77 @@ export default function NavBar() {
         </button>
       </div>
 
-      {mobileMenuOpen && (
-        <div
-          className="lg:hidden px-6 py-6"
-          style={{
-            background: 'rgba(43,27,12,0.98)',
-            borderTop: `1px solid ${GOLD_DIM}`,
-          }}
-        >
-          {NAV_LINKS.map((link) =>
-            link.href ? (
+        {mobileMenuOpen && (
+          <div
+            className="lg:hidden px-6 py-6 pb-28"
+            style={{
+              background: 'rgba(43,27,12,0.98)',
+              borderTop: `1px solid ${GOLD_DIM}`,
+            }}
+          >
+            {NAV_LINKS.map((link) =>
+              link.href ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="block py-3 text-[14px] tracking-[0.25em] uppercase"
+                  style={{ color: 'rgba(252,249,244,0.62)', borderBottom: '1px solid rgba(198,162,97,0.10)' }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <span
+                  key={link.label}
+                  className="block py-3 text-[14px] tracking-[0.25em] uppercase"
+                  style={{ color: 'rgba(252,249,244,0.62)', borderBottom: '1px solid rgba(198,162,97,0.10)', cursor: 'default' }}
+                >
+                  {link.label}
+                </span>
+              ),
+            )}
+            <div className="flex gap-3 mt-6 items-start">
               <a
-                key={link.label}
-                href={link.href}
-                className="block py-3 text-[11px] tracking-[0.25em] uppercase"
-                style={{ color: 'rgba(252,249,244,0.62)', borderBottom: '1px solid rgba(198,162,97,0.10)' }}
+                href="#rsvp"
+                className="flex-1 text-center py-3 text-[13px] tracking-widest uppercase"
+                style={{ background: GOLD, color: OBSIDIAN }}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {link.label}
+                RSVP
               </a>
-            ) : (
-              <span
-                key={link.label}
-                className="block py-3 text-[11px] tracking-[0.25em] uppercase"
-                style={{ color: 'rgba(252,249,244,0.62)', borderBottom: '1px solid rgba(198,162,97,0.10)', cursor: 'default' }}
+              <a
+                href="https://book.passkey.com/gt/221294688?gtid=1a0c291fbd420562cd110013932d5bf1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center py-3 text-[13px] tracking-widest uppercase"
+                style={{ border: `1px solid ${GOLD_DIM}`, color: GOLD }}
+                onClick={() => setMobileMenuOpen(false)}
               >
-                {link.label}
-              </span>
-            ),
-          )}
-          <div className="flex gap-3 mt-6 items-start">
-            <a
-              href="#rsvp"
-              className="flex-1 text-center py-3 text-[11px] tracking-widest uppercase"
-              style={{ background: GOLD, color: OBSIDIAN }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              RSVP
-            </a>
-            <a
-              href="https://passkey.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 text-center py-3 text-[11px] tracking-widest uppercase"
-              style={{ border: `1px solid ${GOLD_DIM}`, color: GOLD }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <strong>Book Hotel Room</strong>
-            </a>
+                <strong>Book Hotel Room</strong>
+              </a>
+            </div>
           </div>
-        </div>
-      )}
-    </nav>
+        )}
+      </nav>
+
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex gap-2 border-t border-[#c6a26133] bg-[#1b0e04]/95 px-3 py-2.5 backdrop-blur-md shadow-[0_-8px_18px_rgba(0,0,0,0.2)]">
+        <a
+          href="#rsvp"
+          className="flex-1 rounded-sm px-2 py-3 text-center text-[11px] font-medium tracking-[0.14em] uppercase"
+          style={{ background: GOLD, color: OBSIDIAN }}
+        >
+          RSVP
+        </a>
+        <a
+          href="https://book.passkey.com/gt/221294688?gtid=1a0c291fbd420562cd110013932d5bf1"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 rounded-sm border px-2 py-3 text-center text-[11px] font-medium tracking-[0.14em] uppercase whitespace-nowrap"
+          style={{ borderColor: GOLD_DIM, color: GOLD }}
+        >
+          Book Hotel
+        </a>
+      </div>
+    </>
   )
 }

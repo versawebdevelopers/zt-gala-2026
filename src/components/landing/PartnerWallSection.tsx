@@ -1,10 +1,7 @@
 import partnerBg from '@/imports/742094b7-e142-4e6e-b856-88c021904120.png'
-import logoZTCorporate from '@/imports/ZT_Corporate_logo.png'
-import logoBadarFam from '@/imports/Badar_Fam_logo.png'
 import logoACE from '@/imports/ACE_Community_Healthcare_logo.png'
 import logoCapitalOneHotel from '@/imports/Capital_One_Hotel_Group_logo.png'
 import logoCityAmbulance from '@/imports/City_Ambulance_logo.png'
-import logoZTAutomotive from '@/imports/ZT_Automotive_logo.png'
 import logoPashaLaw from '@/imports/Pasha_Law_logo.png'
 import logoJanney from '@/imports/Janney_logo.png'
 import logoArthurLawrence from '@/imports/Arthur_Lawrence_logo.png'
@@ -27,6 +24,10 @@ import logoOneStepDiagnostics from '@/imports/One_Step_Diagnostics_logo.png'
 import logoWoodvale from '@/imports/Woodvale_logo.png'
 import logoACEAltus from '@/imports/ACE_Altus_Accountable_Care_Entity.png'
 import logoBalanceCompanies from '@/imports/Balance_Companies_logo.png'
+import logoZTAutomotive from '@/imports/200k-ZT Automotive.png'
+import logoZTHealth from '@/imports/200k-ZT Health.png'
+import logoBadarFam from '@/imports/200k-BadarFamilyOffice.png'
+import logoZTCorporate from '@/imports/200k-zt corporate.png'
 
 const GOLD = '#C6A261'
 
@@ -35,12 +36,15 @@ type SponsorEntry = { type: 'logo'; name: string; src: string } | { type: 'text'
 const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[] }[] = [
   {
     tier: 'Visionary',
-    logoHeight: 200,
+    logoHeight: 250,
     entries: [
       { type: 'logo', name: 'ZT Corporate', src: logoZTCorporate },
       { type: 'logo', name: 'Badar Family Office', src: logoBadarFam },
+      { type: 'logo', name: 'ZT Automotive', src: logoZTAutomotive },
+      { type: 'logo', name: 'ZT Health', src: logoZTHealth },
     ],
   },
+  /*
   {
     tier: 'Innovator',
     logoHeight: 160,
@@ -48,7 +52,6 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
       { type: 'logo', name: 'ACE Community Healthcare', src: logoACE },
       { type: 'logo', name: 'Capital One Hotel Group', src: logoCapitalOneHotel },
       { type: 'logo', name: 'City Ambulance Service', src: logoCityAmbulance },
-      { type: 'logo', name: 'ZT Automotive', src: logoZTAutomotive },
     ],
   },
   {
@@ -107,7 +110,8 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
       { type: 'text', name: 'Capital Automotive' },
       { type: 'text', name: 'Pierpoint' },
     ],
-  },
+  }, 
+  */
 ]
 
 export default function PartnerWallSection() {
@@ -119,7 +123,7 @@ export default function PartnerWallSection() {
           <h2 className="font-quiche text-4xl lg:text-5xl mb-3" style={{ color: '#4D310A' }}>
             Thank You
           </h2>
-          <p className="text-[11px] tracking-[0.4em] uppercase" style={{ color: 'rgba(77,49,10,0.45)', fontWeight: 900 }}>
+          <p className="text-[13px] tracking-[0.4em] uppercase" style={{ color: 'rgba(77,49,10,0.45)', fontWeight: 900 }}>
             to Our Sponsors for Your Support
           </p>
         </div>
@@ -129,7 +133,7 @@ export default function PartnerWallSection() {
             <div key={tier}>
               <div className="flex items-center justify-center gap-4 mb-10">
                 <span className="flex-1 max-w-[120px]" style={{ height: 1, background: GOLD, opacity: 0.5 }} />
-                <p className="text-[10px] tracking-[0.45em] uppercase font-medium" style={{ color: GOLD }}>
+                <p className="text-[12px] tracking-[0.45em] uppercase font-medium" style={{ color: GOLD }}>
                   {tier}
                 </p>
                 <span className="flex-1 max-w-[120px]" style={{ height: 1, background: GOLD, opacity: 0.5 }} />

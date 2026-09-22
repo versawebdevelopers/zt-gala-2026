@@ -12,13 +12,13 @@ export default function PerformersSection() {
     <section id="performers" style={{ background: DEEP, position: 'relative', overflow: 'hidden' }} className="pb-24 pt-5 px-0">
       <div className="max-w-7xl mx-auto px-6 lg:px-12" style={{ position: 'relative', zIndex: 1 }}>
         <div className="text-center mb-16">
-          <p className="text-[11px] tracking-[0.4em] uppercase mb-4 font-light" style={{ color: GOLD }}>
+          <p className="text-[13px] tracking-[0.4em] uppercase mb-4 font-light" style={{ color: GOLD }}>
             An Evening of Excellence
           </p>
         </div>
 
         <div className="mb-16">
-          <p className="text-[10px] tracking-[0.35em] uppercase mb-4" style={{ color: GOLD }}>A Special Performance By</p>
+          <p className="text-[12px] tracking-[0.35em] uppercase mb-4" style={{ color: GOLD }}>A Special Performance By</p>
           <div
             className="flex flex-col lg:flex-row overflow-hidden"
             style={{
@@ -42,23 +42,23 @@ export default function PerformersSection() {
 
             <div className="flex flex-col justify-center p-10 lg:p-14 flex-1">
               <img src={leAnnLogo} alt="LeAnn Rimes" className="mb-6" style={{ width: 260, mixBlendMode: 'screen' }} />
-              <p className="text-[9px] tracking-[0.35em] uppercase mb-5" style={{ color: GOLD }}>Bio</p>
-              <p className="text-sm leading-7 mb-5" style={{ color: 'rgba(252,249,244,0.68)' }}>
+              <p className="text-[11px] tracking-[0.35em] uppercase mb-5" style={{ color: GOLD }}>Bio</p>
+              <p className="text-base leading-7 mb-5 sm:text-sm" style={{ color: 'rgba(252,249,244,0.68)' }}>
                 LeAnn Rimes is an internationally acclaimed, multi-platinum-selling artist whose genre-defying career has spanned nearly three decades. She has released 21 albums and 71 singles to radio worldwide. Rimes has sold over 48 million records globally, earned eight Grammy® nominations and two wins, and made history as the youngest solo artist ever to receive a Grammy.
               </p>
-              <p className="text-sm leading-7 mb-5" style={{ color: 'rgba(252,249,244,0.68)' }}>
+              <p className="text-base leading-7 mb-5 sm:text-sm" style={{ color: 'rgba(252,249,244,0.68)' }}>
                 Beyond her recording and performance career, Rimes continues to use her platform to advocate for mental health awareness, LGBTQ+ rights, anti-bullying, and chronic illness visibility.
               </p>
-              <p className="text-sm leading-7" style={{ color: 'rgba(252,249,244,0.68)' }}>
+              <p className="text-base leading-7 sm:text-sm" style={{ color: 'rgba(252,249,244,0.68)' }}>
                 With a voice that has defined an era and a spirit that continues to evolve, LeAnn Rimes remains a singular force, bridging genres, generations, and global audiences with every new chapter.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-center sm:justify-end">
           <div
-            className="flex items-stretch overflow-hidden"
+            className="flex w-full max-w-[320px] flex-col overflow-hidden sm:w-auto sm:max-w-none sm:flex-row sm:items-stretch"
             style={{
               borderTop: `1px solid rgba(226,201,143,0.70)`,
               borderRight: `1px solid rgba(198,162,97,0.28)`,
@@ -68,14 +68,14 @@ export default function PerformersSection() {
               boxShadow: `0 -1px 0 0 rgba(226,201,143,0.35), 0 4px 24px rgba(198,162,97,0.07)`,
             }}
           >
-            <div className="flex flex-col justify-center p-5 min-w-0" style={{ minWidth: '180px' }}>
-              <p className="font-quiche text-lg mb-1 text-right" style={{ color: CREAM }}>Chester Pitts</p>
-              <p className="text-[10px] tracking-[0.25em] uppercase mb-1 text-right" style={{ color: GOLD }}>Host</p>
-              <p className="text-[10px] leading-relaxed text-right" style={{ color: 'rgba(252,249,244,0.40)' }}>
+            <div className="order-2 flex min-w-0 flex-col justify-center p-5 text-center sm:order-1 sm:text-right" style={{ minWidth: '180px' }}>
+              <p className="font-quiche text-lg mb-1" style={{ color: CREAM }}>Chester Pitts</p>
+              <p className="text-[12px] tracking-[0.25em] uppercase mb-1" style={{ color: GOLD }}>Host</p>
+              <p className="text-[12px] leading-relaxed" style={{ color: 'rgba(252,249,244,0.40)' }}>
                 NFL Pro Bowl Offensive Lineman
               </p>
             </div>
-            <div className="flex-shrink-0 w-72 overflow-hidden" style={{ minHeight: '320px' }}>
+            <div className="order-1 h-[300px] w-full flex-shrink-0 overflow-hidden sm:order-2 sm:h-auto sm:w-72" style={{ minHeight: '320px' }}>
               <img src={chesterPitts} alt="Chester Pitts" className="w-full h-full object-cover object-top" />
             </div>
           </div>
