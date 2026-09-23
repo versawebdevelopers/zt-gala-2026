@@ -69,10 +69,10 @@ export default function PerformersSection() {
             }}
           >
             <div className="order-2 flex min-w-0 flex-col justify-center p-5 text-center sm:order-1 sm:text-right" style={{ minWidth: '180px' }}>
-              <p className="font-quiche text-lg mb-1" style={{ color: CREAM }}>Chester Pitts</p>
-              <p className="text-[12px] tracking-[0.25em] uppercase mb-1" style={{ color: GOLD }}>Host</p>
-              <p className="text-[12px] leading-relaxed" style={{ color: 'rgba(252,249,244,0.40)' }}>
-                NFL Pro Bowl Offensive Lineman
+              <p className="font-quiche text-2xl sm:text-xl mb-1" style={{ color: CREAM }}>Chester Pitts</p>
+              <p className="text-base sm:text-sm tracking-[0.25em] uppercase mb-1" style={{ color: GOLD }}>Host</p>
+              <p className="text-base sm:text-sm leading-relaxed" style={{ color: 'rgba(252,249,244,0.40)' }}>
+                Original Houston Texan
               </p>
             </div>
             <div className="order-1 h-[300px] w-full flex-shrink-0 overflow-hidden sm:order-2 sm:h-auto sm:w-72" style={{ minHeight: '320px' }}>

@@ -1,4 +1,5 @@
 import foundationHero from '@/imports/ZTA-Background-image.png'
+import foundationHeroMobile from '@/imports/baseball_background-mobile.png'
 import ztaWordMarkIcon from '@/imports/ZT_Athletics_Word_Mark_Icon.png'
 import ztaWordMark from '@/imports/ZT_Athletics_Word_Mark-2.png'
 import ztbLW1 from '@/imports/ZTB_Photo_Collage-Landscape-Wide-1.png'
@@ -64,13 +65,13 @@ export default function FoundationSection() {
           opacity: 0.12,
         }}
       />
-      <div className="absolute inset-y-0 right-0 pointer-events-none" style={{ width: '52%' }}>
+      <div className="absolute inset-y-0 right-0 pointer-events-none hidden sm:block" style={{ width: '52%' }}>
         <img
           src={foundationHero}
           alt=""
           aria-hidden="true"
-          className="w-full h-full object-cover"
-          style={{ objectPosition: '18% center', imageRendering: 'auto', WebkitBackfaceVisibility: 'hidden' }}
+          className="w-full h-full object-cover object-[18%_center]"
+          style={{ imageRendering: 'auto', WebkitBackfaceVisibility: 'hidden' }}
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(43,27,12,1) 0%, rgba(43,27,12,0.80) 18%, rgba(43,27,12,0.20) 55%, transparent 100%)' }} />
         <div className="absolute inset-x-0 top-0" style={{ height: '35%', background: 'linear-gradient(to bottom, rgba(43,27,12,0.85) 0%, transparent 100%)' }} />
@@ -81,7 +82,16 @@ export default function FoundationSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-start mb-12 sm:mb-20">
-          <div>
+          <div className="relative overflow-hidden sm:overflow-visible -mx-4 -mt-24 sm:mx-0 sm:mt-0">
+            {/* Mobile-only background, scoped to this column's own height instead of the full section */}
+            <div className="absolute inset-0 sm:hidden pointer-events-none" aria-hidden="true">
+              <img
+                src={foundationHeroMobile}
+                alt=""
+                className="w-full h-full object-cover object-[65%_center]"
+              />
+            </div>
+            <div className="relative z-10 px-6 pb-6 pt-[120px] sm:p-0">
             <p className="text-[12px] tracking-[0.3em] uppercase mb-3 font-light sm:text-[13px] sm:tracking-[0.4em]" style={{ color: GOLD }}>
               Giving Back
             </p>
@@ -108,6 +118,7 @@ export default function FoundationSection() {
                   </p>
                 </div>
               ))}
+            </div>
             </div>
           </div>
 

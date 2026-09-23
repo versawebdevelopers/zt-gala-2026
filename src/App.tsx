@@ -21,6 +21,8 @@ export default function App() {
       <SponsorshipSection />
       <PartnerWallSection />
       <ContactSection />
+      {/* Reserves room below the footer so the fixed mobile RSVP/Book Hotel bar never covers it */}
+      <div className="md:hidden" style={{ height: 'calc(4.2rem + env(safe-area-inset-bottom))' }} aria-hidden="true" />
     </div>
   )
 }
