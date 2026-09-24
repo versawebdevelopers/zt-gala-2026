@@ -105,7 +105,9 @@ export default function HeroSection() {
 
         <div className="hidden md:flex flex-col sm:flex-row gap-4 items-start">
           <a
-            href="#rsvp"
+            href="https://ZTGala2026.rsvpify.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-12 py-4 text-sm tracking-[0.3em] uppercase font-medium transition-colors duration-300"
             style={{ background: GOLD, color: OBSIDIAN }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = GOLD_LIGHT)}

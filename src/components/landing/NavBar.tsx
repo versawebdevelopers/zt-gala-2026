@@ -70,7 +70,9 @@ export default function NavBar() {
 
         <div className="hidden md:flex items-start gap-4">
           <a
-            href="#rsvp"
+            href="https://ZTGala2026.rsvpify.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-2.5 text-[11px] tracking-[0.25em] uppercase font-medium transition-colors duration-300"
             style={{ background: GOLD, color: OBSIDIAN }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = GOLD_LIGHT)}
@@ -141,7 +143,9 @@ export default function NavBar() {
             )}
             <div className="flex gap-3 mt-6 items-start">
               <a
-                href="#rsvp"
+                href="https://ZTGala2026.rsvpify.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 className="flex-1 text-center py-3 text-[13px] tracking-widest uppercase"
                 style={{ background: GOLD, color: OBSIDIAN }}
                 onClick={() => setMobileMenuOpen(false)}
@@ -165,7 +169,9 @@ export default function NavBar() {
 
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex gap-2 border-t border-[#c6a26133] bg-[#1b0e04]/95 px-3 py-2.5 backdrop-blur-md shadow-[0_-8px_18px_rgba(0,0,0,0.2)]">
         <a
-          href="#rsvp"
+          href="https://ZTGala2026.rsvpify.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex-1 rounded-sm px-2 py-3 text-center text-[11px] font-medium tracking-[0.14em] uppercase"
           style={{ background: GOLD, color: OBSIDIAN }}
         >
