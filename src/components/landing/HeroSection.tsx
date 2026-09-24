@@ -11,7 +11,7 @@ const CREAM = '#FCF9F4'
 
 export default function HeroSection() {
   return (
-    <section id="details" className="relative min-h-[100svh] sm:min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section id="details" className="relative min-h-0 sm:min-h-screen flex flex-col items-center justify-start sm:justify-center overflow-hidden">
       <div className="absolute inset-0">
         <picture>
           <source media="(max-width: 639px)" srcSet={mobileHeroBackground} />
