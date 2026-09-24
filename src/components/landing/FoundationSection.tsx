@@ -52,7 +52,7 @@ const TESTIMONIALS = [
 
 export default function FoundationSection() {
   const mobileWideImages = [
-    ztbLW1, ztbL7, ztbL2, ztbL6,
+    ztbLW1, ztbL3, ztbL7, ztbL2, ztbL6,
     ztbL4, ztbL1, ztbL8, ztbL5, ztbLW2b, ztbLL1,
   ]
   const mobileVideoItems = [
