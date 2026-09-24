@@ -18,11 +18,19 @@ export default function ContactSection() {
         />
       </picture>
       <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-12">
+        <style>{`
+          @media (max-width: 767px) {
+            .contact-detail-text {
+              color: #FCF9F4 !important;
+              font-size: 12px;
+            }
+          }
+        `}</style>
         <div className="text-center">
           <h2 className="font-quiche text-[2rem] sm:text-4xl lg:text-5xl mb-3 sm:mb-5" style={{ color: CREAM }}>
             Have Questions?
           </h2>
-          <p className="text-[12px] tracking-[0.04em] uppercase sm:text-sm sm:tracking-[0.05em]" style={{ color: 'rgba(252,249,244,0.48)' }}>
+          <p className="contact-detail-text text-[11px] tracking-[0.2em] uppercase font-light sm:text-[12px] sm:tracking-[0.3em]" style={{ color: 'rgba(198,162,97,0.70)' }}>
             Feel free to reach out to us at{' '}
             <a
               href="mailto:rsvp@ztcorporate.com"

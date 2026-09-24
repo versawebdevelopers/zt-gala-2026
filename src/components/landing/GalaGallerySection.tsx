@@ -223,7 +223,7 @@ export function VideoCarouselSlot({
 }
 
 export function MobileWideSlideshow({ items, backgroundColor = 'transparent', fixedAspectRatio }: { items: string[]; backgroundColor?: string; fixedAspectRatio?: string }) {
-  const { active, previous, next } = useSlideshowNavigation(items.length)
+  const { active } = useSlideshowNavigation(items.length)
 
   return (
     <div className="mobile-wide-slideshow relative w-full overflow-hidden" style={{ background: backgroundColor, aspectRatio: fixedAspectRatio }}>
@@ -232,34 +232,22 @@ export function MobileWideSlideshow({ items, backgroundColor = 'transparent', fi
         alt="Gallery photo"
         className={`gallery-media mobile-wide-media w-full ${fixedAspectRatio ? 'absolute inset-0 h-full object-contain' : 'block h-auto'}`}
       />
-      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5" aria-hidden="true">
-        {items.map((src, index) => (
-          <span key={src} style={{ width: index === active ? 18 : 5, height: 5, background: index === active ? GOLD : 'rgba(77,49,10,0.45)', transition: 'width 300ms ease' }} />
-        ))}
-      </div>
-      <MobileSlideshowControls onPrevious={previous} onNext={next} />
     </div>
   )
 }
 
 export function MobileVerticalSlideshow({ items, backgroundColor = 'transparent' }: { items: string[]; backgroundColor?: string }) {
-  const { active, previous, next } = useSlideshowNavigation(items.length)
+  const { active } = useSlideshowNavigation(items.length)
 
   return (
     <div className="mobile-vertical-slideshow relative w-full overflow-hidden" style={{ background: backgroundColor }}>
       <img src={items[active]} alt="Gallery photo" className="gallery-media block w-full h-auto" />
-      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5" aria-hidden="true">
-        {items.map((src, index) => (
-          <span key={src} style={{ width: index === active ? 18 : 5, height: 5, background: index === active ? GOLD : 'rgba(77,49,10,0.45)', transition: 'width 300ms ease' }} />
-        ))}
-      </div>
-      <MobileSlideshowControls onPrevious={previous} onNext={next} />
     </div>
   )
 }
 
 export function MobileVideoSlideshow({ items, backgroundColor = 'transparent' }: { items: { src: string; name: string; videoUrl: string }[]; backgroundColor?: string }) {
-  const { active, previous, next } = useSlideshowNavigation(items.length)
+  const { active } = useSlideshowNavigation(items.length)
   const [modalOpen, setModalOpen] = useState(false)
   const item = items[active]
 
@@ -274,12 +262,6 @@ export function MobileVideoSlideshow({ items, backgroundColor = 'transparent' }:
         </span>
         <span className="absolute bottom-3 left-3 text-[10px] tracking-[0.2em] uppercase" style={{ color: 'rgba(252,249,244,0.85)' }}>{item.name}</span>
       </button>
-      <div className="absolute bottom-3 right-3 flex gap-1.5" aria-hidden="true">
-        {items.map((entry, index) => (
-          <span key={entry.src} style={{ width: index === active ? 18 : 5, height: 5, background: index === active ? GOLD : 'rgba(252,249,244,0.6)', transition: 'width 300ms ease' }} />
-        ))}
-      </div>
-      <MobileSlideshowControls onPrevious={previous} onNext={next} />
       {modalOpen && <VideoModal url={item.videoUrl} onClose={() => setModalOpen(false)} />}
     </div>
   )
@@ -288,23 +270,12 @@ export function MobileVideoSlideshow({ items, backgroundColor = 'transparent' }:
 function useSlideshowNavigation(itemCount: number) {
   const [active, setActive] = useState(0)
 
-  const previous = () => setActive((current) => (current - 1 + itemCount) % itemCount)
-  const next = () => setActive((current) => (current + 1) % itemCount)
+  useEffect(() => {
+    const interval = setInterval(() => setActive((current) => (current + 1) % itemCount), 5000)
+    return () => clearInterval(interval)
+  }, [itemCount])
 
-  return { active, previous, next }
-}
-
-function MobileSlideshowControls({ onPrevious, onNext }: { onPrevious: () => void; onNext: () => void }) {
-  return (
-    <div className="absolute z-10 flex gap-1.5" style={{ top: 12, right: 12 }}>
-      <button type="button" onClick={onPrevious} aria-label="Previous slide" className="flex items-center justify-center" style={{ width: 28, height: 28, color: GOLD, background: 'rgba(43,27,12,0.7)', border: '1px solid rgba(198,162,97,0.6)' }}>
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M8 2.5L4 6l4 3.5" /></svg>
-      </button>
-      <button type="button" onClick={onNext} aria-label="Next slide" className="flex items-center justify-center" style={{ width: 28, height: 28, color: GOLD, background: 'rgba(43,27,12,0.7)', border: '1px solid rgba(198,162,97,0.6)' }}>
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M4 2.5L8 6l-4 3.5" /></svg>
-      </button>
-    </div>
-  )
+  return { active }
 }
 
 export const TESTIMONIALS = [
@@ -387,11 +358,11 @@ export default function GalaGallerySection() {
         <div className="mobile-video-slideshow mb-3">
           <MobileVideoSlideshow items={mobileVideoItems} />
         </div>
+        <div className="mobile-vertical-slideshow mb-3">
+          <MobileVerticalSlideshow items={mobileVerticalImages} />
+        </div>
         <div className="mobile-wide-slideshow mb-3">
           <MobileWideSlideshow items={mobileWideImages} />
-        </div>
-        <div className="mobile-vertical-slideshow mb-10">
-          <MobileVerticalSlideshow items={mobileVerticalImages} />
         </div>
 
         <div className="gala-grid mb-10">

@@ -169,11 +169,11 @@ export default function FoundationSection() {
         <div className="mobile-video-slideshow mb-3">
           <MobileVideoSlideshow items={mobileVideoItems} />
         </div>
+        <div className="mobile-vertical-slideshow mb-3">
+          <MobileVerticalSlideshow items={mobileVerticalImages} />
+        </div>
         <div className="mobile-wide-slideshow mb-3">
           <MobileWideSlideshow items={mobileWideImages} fixedAspectRatio="16 / 9" />
-        </div>
-        <div className="mobile-vertical-slideshow mb-10">
-          <MobileVerticalSlideshow items={mobileVerticalImages} />
         </div>
 
         <div className="foundation-grid">
