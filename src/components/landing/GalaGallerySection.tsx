@@ -287,26 +287,11 @@ export function MobileVideoSlideshow({ items, backgroundColor = 'transparent' }:
 
 function useSlideshowNavigation(itemCount: number) {
   const [active, setActive] = useState(0)
-  const touchStart = useRef<number | null>(null)
-
-  useEffect(() => {
-    const interval = setInterval(() => setActive((current) => (current + 1) % itemCount), 5000)
-    return () => clearInterval(interval)
-  }, [itemCount])
 
   const previous = () => setActive((current) => (current - 1 + itemCount) % itemCount)
   const next = () => setActive((current) => (current + 1) % itemCount)
-  const touchHandlers = {
-    onTouchStart: (event: React.TouchEvent<HTMLDivElement>) => { touchStart.current = event.touches[0].clientX },
-    onTouchEnd: (event: React.TouchEvent<HTMLDivElement>) => {
-      if (touchStart.current === null) return
-      const distance = event.changedTouches[0].clientX - touchStart.current
-      touchStart.current = null
-      if (Math.abs(distance) > 40) distance < 0 ? next() : previous()
-    },
-  }
 
-  return { active, previous, next, touchHandlers }
+  return { active, previous, next }
 }
 
 function MobileSlideshowControls({ onPrevious, onNext }: { onPrevious: () => void; onNext: () => void }) {
