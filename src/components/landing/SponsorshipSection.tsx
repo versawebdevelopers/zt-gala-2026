@@ -126,6 +126,12 @@ export default function SponsorshipSection() {
           background: linear-gradient(to right, transparent, rgba(226,201,143,0.95), transparent);
           filter: drop-shadow(0 0 5px rgba(198,162,97,0.7));
         }
+        @media (max-width: 767px) {
+          .sponsorship-contact {
+            color: #FCF9F4 !important;
+            font-size: 12px;
+          }
+        }
       `}</style>
 
       <img src={sponsorshipBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
@@ -135,7 +141,7 @@ export default function SponsorshipSection() {
           <h2 className="font-quiche text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#FCF9F4' }}>
             Sponsorship
           </h2>
-          <p className="text-[11px] tracking-[0.2em] uppercase font-light sm:text-[12px] sm:tracking-[0.3em]" style={{ color: 'rgba(198,162,97,0.70)' }}>
+          <p className="sponsorship-contact text-[11px] tracking-[0.2em] uppercase font-light sm:text-[12px] sm:tracking-[0.3em]" style={{ color: 'rgba(198,162,97,0.70)' }}>
             For more information, please contact Thuylan Chang at{' '}
             <a
               href="mailto:thuylan@ztcorporate.com"

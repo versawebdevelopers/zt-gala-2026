@@ -25,13 +25,13 @@ import testimonial1 from '@/imports/ZTB_Testimonial_Thumbnail-1b.png'
 import testimonial2 from '@/imports/ZTB_Testimonial_Thumbnail-2b.png'
 import testimonial3 from '@/imports/ZTB_Testimonial_Thumbnail-3b.png'
 import testimonial4 from '@/imports/ZTB_Testimonial_Thumbnail-4b.png'
-import { CarouselSlot, VideoCarouselSlot } from './GalaGallerySection'
+import { CarouselSlot, MobileVerticalSlideshow, MobileVideoSlideshow, MobileWideSlideshow, VideoCarouselSlot } from './GalaGallerySection'
 
 const OBSIDIAN = '#2B1B0C'
 const GOLD = '#C6A261'
 const CREAM = '#FCF9F4'
 
-const MOSAIC = [
+const MOSAIC: { pair: [string, string]; delay: number; col: string; row: string }[] = [
   { pair: [ztbLW1, ztbLW2], delay: 0.0, col: '1 / 4', row: '1 / 2' },
   { pair: [ztbLL1, ztbL7], delay: 1.8, col: '4 / 6', row: '1 / 2' },
   { pair: [ztbV1, ztbV2], delay: 3.5, col: '6 / 7', row: '1 / 2' },
@@ -51,6 +51,18 @@ const TESTIMONIALS = [
 ]
 
 export default function FoundationSection() {
+  const mobileWideImages = [
+    ztbLW1, ztbLW2, ztbLL1, ztbL7, ztbL2, ztbL6,
+    ztbL4, ztbL1, ztbL8, ztbL5, ztbLW2b, ztbLL1,
+  ]
+  const mobileVideoItems = [
+    { src: testimonial3, name: TESTIMONIALS[2].name, videoUrl: TESTIMONIALS[2].videoUrl },
+    { src: testimonial1, name: TESTIMONIALS[0].name, videoUrl: TESTIMONIALS[0].videoUrl },
+    { src: testimonial4, name: TESTIMONIALS[3].name, videoUrl: TESTIMONIALS[3].videoUrl },
+    { src: testimonial2, name: TESTIMONIALS[1].name, videoUrl: TESTIMONIALS[1].videoUrl },
+  ]
+  const mobileVerticalImages = [ztbV1, ztbV2, ztbV3, ztbV4, ztbV5, ztbV6]
+
   return (
     <section id="foundation" style={{ background: OBSIDIAN }} className="relative py-24 overflow-hidden">
       <img
@@ -103,17 +115,17 @@ export default function FoundationSection() {
               The ZT Athletics Foundation fosters youth development and community engagement through sports, integrating teamwork and discipline into young athletes' lives while promoting physical fitness and personal growth. It offers various programs and clinics, connecting communities with opportunities for skill development and character building.
             </p>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4">
               {[
                 { num: '1,200+', label: 'Youth Served' },
                 { num: '48', label: 'Partner Schools' },
                 { num: '$2.1M', label: 'Raised to Date' },
               ].map((stat) => (
-                <div key={stat.label} className="p-4 text-center sm:p-5" style={{ border: 'none' }}>
+                <div key={stat.label} className="min-w-0 p-2 text-center sm:p-5" style={{ border: 'none' }}>
                   <p className="font-quiche text-2xl sm:text-3xl lg:text-4xl mb-1" style={{ color: GOLD }}>
                     {stat.num}
                   </p>
-                  <p className="text-[10px] tracking-[0.15em] uppercase sm:text-[11px] sm:tracking-[0.2em]" style={{ color: 'rgba(252,249,244,0.45)' }}>
+                  <p className="text-sm leading-5 tracking-[0.08em] uppercase sm:text-sm sm:leading-8 sm:tracking-[0.2em]" style={{ color: 'rgba(252,249,244,0.45)' }}>
                     {stat.label}
                   </p>
                 </div>
@@ -135,6 +147,8 @@ export default function FoundationSection() {
         <style>{`
           .foundation-grid { display: grid; gap: 8px; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: repeat(3, 240px); }
           @media (max-width: 767px) {
+            .foundation-grid .gallery-slot-wide { display: none; }
+            .foundation-grid .gallery-slot-vertical { display: none; }
             .foundation-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
             .foundation-grid > * { grid-column: auto !important; grid-row: auto !important; min-height: 200px; }
             .foundation-grid > :nth-child(1),
@@ -152,15 +166,25 @@ export default function FoundationSection() {
           }
         `}</style>
 
+        <div className="mobile-video-slideshow mb-3">
+          <MobileVideoSlideshow items={mobileVideoItems} />
+        </div>
+        <div className="mobile-wide-slideshow mb-3">
+          <MobileWideSlideshow items={mobileWideImages} fixedAspectRatio="16 / 9" />
+        </div>
+        <div className="mobile-vertical-slideshow mb-10">
+          <MobileVerticalSlideshow items={mobileVerticalImages} />
+        </div>
+
         <div className="foundation-grid">
           <CarouselSlot pair={MOSAIC[0].pair} delay={MOSAIC[0].delay} col="1 / 4" row="1 / 2" />
           <VideoCarouselSlot thumbnail={TESTIMONIALS[2].thumbnail} name={TESTIMONIALS[2].name} videoUrl={TESTIMONIALS[2].videoUrl} altImage={ztbL7} col="4 / 6" row="1 / 2" delay={1.2} />
-          <CarouselSlot pair={MOSAIC[2].pair} delay={MOSAIC[2].delay} col="6 / 7" row="1 / 2" />
-          <CarouselSlot pair={MOSAIC[3].pair} delay={MOSAIC[3].delay} col="1 / 2" row="2 / 3" />
+          <CarouselSlot pair={MOSAIC[2].pair} delay={MOSAIC[2].delay} col="6 / 7" row="1 / 2" mobileType="vertical" />
+          <CarouselSlot pair={MOSAIC[3].pair} delay={MOSAIC[3].delay} col="1 / 2" row="2 / 3" mobileType="vertical" />
           <VideoCarouselSlot thumbnail={TESTIMONIALS[0].thumbnail} name={TESTIMONIALS[0].name} videoUrl={TESTIMONIALS[0].videoUrl} altImage={ztbL2} col="2 / 4" row="2 / 3" delay={3.0} />
           <VideoCarouselSlot thumbnail={TESTIMONIALS[3].thumbnail} name={TESTIMONIALS[3].name} videoUrl={TESTIMONIALS[3].videoUrl} altImage={ztbL6} col="4 / 7" row="2 / 3" delay={0.6} />
           <CarouselSlot pair={MOSAIC[6].pair} delay={MOSAIC[6].delay} col="1 / 3" row="3 / 4" />
-          <CarouselSlot pair={MOSAIC[7].pair} delay={MOSAIC[7].delay} col="3 / 4" row="3 / 4" />
+          <CarouselSlot pair={MOSAIC[7].pair} delay={MOSAIC[7].delay} col="3 / 4" row="3 / 4" mobileType="vertical" />
           <VideoCarouselSlot thumbnail={TESTIMONIALS[1].thumbnail} name={TESTIMONIALS[1].name} videoUrl={TESTIMONIALS[1].videoUrl} altImage={ztbLL1} col="4 / 7" row="3 / 4" delay={4.5} />
         </div>
       </div>

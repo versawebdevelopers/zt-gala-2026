@@ -26,13 +26,9 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center text-center px-12 sm:px-20 pt-30 pb-16 sm:pt-48 sm:pb-20">
+      <div className="relative z-10 flex flex-col items-center text-center px-12 sm:px-20 pt-30 pb-0 sm:pt-48 sm:pb-20">
         <style>{`
           @media (max-width: 639px) {
-            .hero-detail-text {
-              -webkit-text-stroke: 0.5px rgba(27,14,4,0.85);
-              paint-order: stroke fill;
-            }
             .hero-detail-label {
               font-size: 16px !important;
               color: ${OBSIDIAN} !important;
@@ -71,7 +67,7 @@ export default function HeroSection() {
           <div className="h-px w-36" style={{ background: `linear-gradient(to left, transparent, ${GOLD_LIGHT})` }} />
         </div>
 
-        <div className="flex w-full max-w-[330px] sm:max-w-4xl flex-col items-center gap-3 sm:flex-row sm:items-stretch sm:justify-center sm:gap-8 sm:gap-0 mb-6 sm:mb-14">
+        <div className="flex w-full max-w-[330px] sm:max-w-4xl flex-col items-center gap-3 sm:flex-row sm:items-stretch sm:justify-center sm:gap-24 mb-0 sm:mb-14">
           {[
             { label: 'Date', lines: ['December 5th'] },
             { label: 'Venue', lines: ['Hilton Americas Hotel', 'On Lamar St, Houston'] },

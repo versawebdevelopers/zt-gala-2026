@@ -81,6 +81,7 @@ export function CarouselSlot({
   row,
   label,
   objectPosition = 'center',
+  mobileType = 'wide',
 }: {
   pair: [string | null, string | null]
   delay: number
@@ -88,6 +89,7 @@ export function CarouselSlot({
   row: string
   label?: string
   objectPosition?: string
+  mobileType?: 'wide' | 'vertical'
 }) {
   const bothReal = pair[0] !== null && pair[1] !== null
   const [active, setActive] = useState(0)
@@ -124,7 +126,7 @@ export function CarouselSlot({
   return (
     <div
       style={{ gridColumn: col, gridRow: row }}
-      className="relative overflow-hidden bg-stone-950"
+      className={`gallery-slot gallery-slot-${mobileType} relative overflow-hidden bg-stone-950`}
       onMouseEnter={handlePause}
       onMouseLeave={handleResume}
     >
@@ -135,7 +137,7 @@ export function CarouselSlot({
           style={{ opacity: bothReal ? (i === active ? 1 : 0) : 1 }}
         >
           {src ? (
-            <img src={src} alt="ZT Baseball Foundation" className="w-full h-full object-cover" style={{ objectPosition }} />
+            <img src={src} alt="ZT Baseball Foundation" className="gallery-media w-full h-full object-cover" style={{ objectPosition }} />
           ) : (
             <MosaicPlaceholder label={label} />
           )}
@@ -161,6 +163,7 @@ export function VideoCarouselSlot({
   row,
   delay,
   videoUrl,
+  mobileType = 'wide',
 }: {
   thumbnail: string
   name: string
@@ -169,6 +172,7 @@ export function VideoCarouselSlot({
   row: string
   delay: number
   videoUrl?: string
+  mobileType?: 'wide' | 'vertical'
 }) {
   const [active, setActive] = useState(0)
   const [modalOpen, setModalOpen] = useState(false)
@@ -188,11 +192,11 @@ export function VideoCarouselSlot({
   return (
     <div
       style={{ gridColumn: col, gridRow: row }}
-      className="relative overflow-hidden bg-stone-950 group cursor-pointer"
+      className={`gallery-slot gallery-slot-${mobileType} relative overflow-hidden bg-stone-950 group cursor-pointer`}
       onClick={() => videoUrl && setModalOpen(true)}
     >
       <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out" style={{ opacity: active === 0 ? 1 : 0 }}>
-        <img src={thumbnail} alt={`${name} testimonial`} className="w-full h-full object-cover object-center" />
+        <img src={thumbnail} alt={`${name} testimonial`} className="gallery-media w-full h-full object-cover object-center" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(43,27,12,0.75) 0%, rgba(43,27,12,0.12) 55%, transparent 100%)' }} />
         <div className="absolute inset-0 flex items-center justify-center">
           <div
@@ -210,12 +214,96 @@ export function VideoCarouselSlot({
       </div>
 
       <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out" style={{ opacity: active === 1 ? 1 : 0 }}>
-        <img src={altImage} alt="ZT Baseball Foundation" className="w-full h-full object-cover" />
+        <img src={altImage} alt="ZT Baseball Foundation" className="gallery-media w-full h-full object-cover" />
       </div>
 
       {modalOpen && videoUrl && <VideoModal url={videoUrl} onClose={() => setModalOpen(false)} />}
     </div>
   )
+}
+
+export function MobileWideSlideshow({ items, backgroundColor = 'transparent', fixedAspectRatio }: { items: string[]; backgroundColor?: string; fixedAspectRatio?: string }) {
+  const { active, touchHandlers } = useSlideshowNavigation(items.length)
+
+  return (
+    <div className="mobile-wide-slideshow relative w-full overflow-hidden" style={{ background: backgroundColor, aspectRatio: fixedAspectRatio }} {...touchHandlers}>
+      <img
+        src={items[active]}
+        alt="Gallery photo"
+        className={`gallery-media mobile-wide-media w-full ${fixedAspectRatio ? 'absolute inset-0 h-full object-contain' : 'block h-auto'}`}
+      />
+      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5" aria-hidden="true">
+        {items.map((src, index) => (
+          <span key={src} style={{ width: index === active ? 18 : 5, height: 5, background: index === active ? GOLD : 'rgba(77,49,10,0.45)', transition: 'width 300ms ease' }} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export function MobileVerticalSlideshow({ items, backgroundColor = 'transparent' }: { items: string[]; backgroundColor?: string }) {
+  const { active, touchHandlers } = useSlideshowNavigation(items.length)
+
+  return (
+    <div className="mobile-vertical-slideshow relative w-full overflow-hidden" style={{ background: backgroundColor }} {...touchHandlers}>
+      <img src={items[active]} alt="Gallery photo" className="gallery-media block w-full h-auto" />
+      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5" aria-hidden="true">
+        {items.map((src, index) => (
+          <span key={src} style={{ width: index === active ? 18 : 5, height: 5, background: index === active ? GOLD : 'rgba(77,49,10,0.45)', transition: 'width 300ms ease' }} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export function MobileVideoSlideshow({ items, backgroundColor = 'transparent' }: { items: { src: string; name: string; videoUrl: string }[]; backgroundColor?: string }) {
+  const { active, touchHandlers } = useSlideshowNavigation(items.length)
+  const [modalOpen, setModalOpen] = useState(false)
+  const item = items[active]
+
+  return (
+    <div className="mobile-video-slideshow relative w-full overflow-hidden" style={{ aspectRatio: '16 / 9', background: backgroundColor }} {...touchHandlers}>
+      <button type="button" className="relative w-full h-full" onClick={() => setModalOpen(true)} aria-label={`Play ${item.name}`}>
+        <img src={item.src} alt={`${item.name} testimonial`} className="gallery-media w-full h-full object-contain" style={{ objectPosition: 'center top' }} />
+        <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <span className="flex items-center justify-center" style={{ width: 48, height: 48, border: `1px solid ${GOLD}`, background: 'rgba(43,27,12,0.6)' }}>
+            <svg width="15" height="15" viewBox="0 0 15 15" fill={GOLD} aria-hidden="true"><polygon points="4,2 13,7.5 4,13" /></svg>
+          </span>
+        </span>
+        <span className="absolute bottom-3 left-3 text-[10px] tracking-[0.2em] uppercase" style={{ color: 'rgba(252,249,244,0.85)' }}>{item.name}</span>
+      </button>
+      <div className="absolute bottom-3 right-3 flex gap-1.5" aria-hidden="true">
+        {items.map((entry, index) => (
+          <span key={entry.src} style={{ width: index === active ? 18 : 5, height: 5, background: index === active ? GOLD : 'rgba(252,249,244,0.6)', transition: 'width 300ms ease' }} />
+        ))}
+      </div>
+      {modalOpen && <VideoModal url={item.videoUrl} onClose={() => setModalOpen(false)} />}
+    </div>
+  )
+}
+
+function useSlideshowNavigation(itemCount: number) {
+  const [active, setActive] = useState(0)
+  const touchStart = useRef<number | null>(null)
+
+  useEffect(() => {
+    const interval = setInterval(() => setActive((current) => (current + 1) % itemCount), 5000)
+    return () => clearInterval(interval)
+  }, [itemCount])
+
+  const previous = () => setActive((current) => (current - 1 + itemCount) % itemCount)
+  const next = () => setActive((current) => (current + 1) % itemCount)
+  const touchHandlers = {
+    onTouchStart: (event: React.TouchEvent<HTMLDivElement>) => { touchStart.current = event.touches[0].clientX },
+    onTouchEnd: (event: React.TouchEvent<HTMLDivElement>) => {
+      if (touchStart.current === null) return
+      const distance = event.changedTouches[0].clientX - touchStart.current
+      touchStart.current = null
+      if (Math.abs(distance) > 40) distance < 0 ? next() : previous()
+    },
+  }
+
+  return { active, previous, next, touchHandlers }
 }
 
 export const TESTIMONIALS = [
@@ -238,6 +326,16 @@ export const MOSAIC: { pair: [string, string | null]; delay: number; col: string
 ]
 
 export default function GalaGallerySection() {
+  const mobileWideImages = [
+    pgL3, pgL9, pgL8, pgL4, pgL7, pgL5,
+    pgL11, pgL20, pgL6, pgL18, pgL2, pgL16, pgL13, pgL15,
+  ]
+  const mobileVideoItems = [
+    { src: pgVid1, name: '2024 Gala Highlights', videoUrl: 'https://vimeo.com/1081180835/14f1115c37' },
+    { src: pgVid2, name: '2025 Gala Highlights', videoUrl: gala2025Recap },
+  ]
+  const mobileVerticalImages = [pgVert1, pgVert2, pgVert3, pgVert4, pgVert5, pgVert6]
+
   return (
     <section id="past-galas" className="relative pb-24 overflow-hidden" style={{ paddingTop: 40 }}>
       <img src={galaBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
@@ -250,6 +348,18 @@ export default function GalaGallerySection() {
         </div>
 
         <style>{`
+          .mobile-wide-slideshow { display: none; }
+          .mobile-vertical-slideshow { display: none; }
+          .mobile-video-slideshow { display: none; }
+          @media (max-width: 767px) {
+            .gallery-media { object-position: center top !important; }
+            .mobile-wide-media { object-position: center center !important; }
+            .gallery-slot-wide { display: none; }
+            .gallery-slot-vertical { display: none; }
+            .mobile-wide-slideshow { display: block; }
+            .mobile-vertical-slideshow { display: block; }
+            .mobile-video-slideshow { display: block; }
+          }
           .gala-grid { display: grid; gap: 8px; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: repeat(3, 240px); }
           @media (max-width: 767px) {
             .gala-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
@@ -273,13 +383,23 @@ export default function GalaGallerySection() {
           }
         `}</style>
 
+        <div className="mobile-video-slideshow mb-3">
+          <MobileVideoSlideshow items={mobileVideoItems} />
+        </div>
+        <div className="mobile-wide-slideshow mb-3">
+          <MobileWideSlideshow items={mobileWideImages} />
+        </div>
+        <div className="mobile-vertical-slideshow mb-10">
+          <MobileVerticalSlideshow items={mobileVerticalImages} />
+        </div>
+
         <div className="gala-grid mb-10">
           <CarouselSlot pair={[pgL3, pgL9]} delay={0.0} col="1 / 4" row="1 / 2" objectPosition="center" />
           <VideoCarouselSlot thumbnail={pgVid1} name="2024 Gala Highlights" altImage={pgL8} col="4 / 6" row="1 / 2" delay={1.2} videoUrl="https://vimeo.com/1081180835/14f1115c37" />
-          <CarouselSlot pair={[pgVert1, pgVert2]} delay={2.5} col="6 / 7" row="1 / 2" objectPosition="top" />
-          <CarouselSlot pair={[pgVert3, pgVert4]} delay={1.0} col="1 / 2" row="2 / 3" objectPosition="top" />
+          <CarouselSlot pair={[pgVert1, pgVert2]} delay={2.5} col="6 / 7" row="1 / 2" objectPosition="top" mobileType="vertical" />
+          <CarouselSlot pair={[pgVert3, pgVert4]} delay={1.0} col="1 / 2" row="2 / 3" objectPosition="top" mobileType="vertical" />
           <VideoCarouselSlot thumbnail={pgVid2} name="2025 Gala Highlights" altImage={pgL4} col="2 / 4" row="2 / 3" delay={3.0} videoUrl={gala2025Recap} />
-          <CarouselSlot pair={[pgVert5, pgVert6]} delay={2.0} col="4 / 5" row="2 / 3" objectPosition="top" />
+          <CarouselSlot pair={[pgVert5, pgVert6]} delay={2.0} col="4 / 5" row="2 / 3" objectPosition="top" mobileType="vertical" />
           <CarouselSlot pair={[pgL7, pgL5]} delay={0.6} col="5 / 7" row="2 / 3" objectPosition="center" />
           <CarouselSlot pair={[pgL11, pgL20]} delay={3.0} col="1 / 3" row="3 / 4" objectPosition="top 15%" />
           <CarouselSlot pair={[pgL6, pgL18]} delay={1.5} col="3 / 4" row="3 / 4" objectPosition="center" />
