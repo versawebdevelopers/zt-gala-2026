@@ -338,7 +338,7 @@ export default function GalaGallerySection() {
   const mobileVerticalImages = [pgVert1, pgVert2, pgVert3, pgVert4, pgVert5, pgVert6]
 
   return (
-    <section id="past-galas" className="relative pb-24 overflow-hidden" style={{ paddingTop: 40 }}>
+    <section id="past-galas" className="relative pb-12 sm:pb-24 overflow-hidden" style={{ paddingTop: 40 }}>
       <img src={galaBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
       <div className="absolute inset-0" style={{ background: 'rgba(231,220,203,0.78)' }} />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -363,7 +363,7 @@ export default function GalaGallerySection() {
           }
           .gala-grid { display: grid; gap: 8px; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: repeat(3, 240px); }
           @media (max-width: 767px) {
-            .gala-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
+            .gala-grid { display: none; }
             .gala-grid > * { grid-column: auto !important; grid-row: auto !important; min-height: 220px; }
             .gala-grid > :nth-child(1),
             .gala-grid > :nth-child(8),
