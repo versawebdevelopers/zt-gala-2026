@@ -9,7 +9,7 @@ const CREAM = '#FCF9F4'
 
 export default function PerformersSection() {
   return (
-    <section id="performers" style={{ background: DEEP, position: 'relative', overflow: 'hidden' }} className="pb-24 pt-0 px-0">
+    <section id="performers" style={{ background: DEEP, position: 'relative', overflow: 'hidden' }} className="pb-24 pt-0 sm:pt-5 px-0">
       <div className="max-w-7xl mx-auto px-6 lg:px-12" style={{ position: 'relative', zIndex: 1 }}>
         <div className="text-center mb-16">
           <p className="hidden text-[13px] tracking-[0.4em] uppercase mb-4 font-light sm:block" style={{ color: GOLD }}>
