@@ -67,7 +67,7 @@ export default function HeroSection() {
           <div className="h-px w-36" style={{ background: `linear-gradient(to left, transparent, ${GOLD_LIGHT})` }} />
         </div>
 
-        <div className="flex w-full max-w-[330px] sm:max-w-4xl flex-col items-center gap-3 sm:flex-row sm:items-stretch sm:justify-center sm:gap-24 mb-0 sm:mb-14">
+        <div className="flex w-full max-w-[330px] sm:max-w-4xl flex-col items-center gap-3 sm:flex-row sm:items-stretch sm:justify-center sm:gap-24 pb-9 sm:pb-0 sm:mb-14">
           {[
             { label: 'Date', lines: ['December 5th'] },
             { label: 'Venue', lines: ['Hilton Americas Hotel', 'On Lamar St, Houston'] },
