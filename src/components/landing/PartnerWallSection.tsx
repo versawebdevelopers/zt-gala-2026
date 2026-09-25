@@ -118,7 +118,7 @@ export default function PartnerWallSection() {
   return (
     <section className="relative w-full py-20 overflow-hidden">
       <img src={partnerBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-10 max-w-[90rem] mx-auto px-4 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="font-quiche text-4xl lg:text-5xl mb-3" style={{ color: '#4D310A' }}>
             Thank You
@@ -139,17 +139,17 @@ export default function PartnerWallSection() {
                 <span className="flex-1 max-w-[120px]" style={{ height: 1, background: GOLD, opacity: 0.5 }} />
               </div>
 
-              <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
+              <div className="grid grid-cols-1 lg:grid-cols-4 justify-items-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0">
                 {entries.map((entry) =>
                   entry.type === 'logo' ? (
                     <img
                       key={entry.name}
                       src={entry.src}
                       alt={entry.name}
+                      className="max-w-full"
                       style={{
-                        height: logoHeight,
+                        height: `clamp(${Math.min(150, logoHeight * 0.75)}px, 40vw, ${logoHeight}px)`,
                         width: 'auto',
-                        maxWidth: logoHeight * 3.2,
                         objectFit: 'contain',
                         mixBlendMode: 'multiply',
                         transition: 'opacity 0.2s',
