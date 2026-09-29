@@ -28,90 +28,38 @@ import logoZTAutomotive from '@/imports/200k-ZT Automotive.png'
 import logoZTHealth from '@/imports/200k-ZT Health.png'
 import logoBadarFam from '@/imports/200k-BadarFamilyOffice.png'
 import logoZTCorporate from '@/imports/200k-zt corporate.png'
+import logoArthurLawrence100k from '@/imports/100k-arthur lawrence.png'
+import logoChamberlain15k from '@/imports/15k-chamberlain.png'
 
 const GOLD = '#C6A261'
 
-type SponsorEntry = { type: 'logo'; name: string; src: string } | { type: 'text'; name: string }
+type SponsorEntry = { type: 'logo'; name: string; src: string; href: string } | { type: 'text'; name: string }
 
 const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[] }[] = [
   {
     tier: 'Visionary',
     logoHeight: 250,
     entries: [
-      { type: 'logo', name: 'ZT Corporate', src: logoZTCorporate },
-      { type: 'logo', name: 'Badar Family Office', src: logoBadarFam },
-      { type: 'logo', name: 'ZT Automotive', src: logoZTAutomotive },
-      { type: 'logo', name: 'ZT Health', src: logoZTHealth },
+      { type: 'logo', name: 'ZT Corporate', src: logoZTCorporate, href: 'https://ztcorporate.com/' },
+      { type: 'logo', name: 'Badar Family Office', src: logoBadarFam, href: 'http://badarfamilyoffice.com/' },
+      { type: 'logo', name: 'ZT Automotive', src: logoZTAutomotive, href: 'https://www.ztautogroup.com/' },
+      { type: 'logo', name: 'ZT Health', src: logoZTHealth, href: 'https://zthealth.com/' },
     ],
   },
-  /*
   {
     tier: 'Innovator',
     logoHeight: 160,
     entries: [
-      { type: 'logo', name: 'ACE Community Healthcare', src: logoACE },
-      { type: 'logo', name: 'Capital One Hotel Group', src: logoCapitalOneHotel },
-      { type: 'logo', name: 'City Ambulance Service', src: logoCityAmbulance },
-    ],
-  },
-  {
-    tier: 'Ambassador',
-    logoHeight: 130,
-    entries: [
-      { type: 'logo', name: 'Pasha Law PC', src: logoPashaLaw },
-      { type: 'logo', name: 'Janney', src: logoJanney },
-      { type: 'logo', name: 'Arthur Lawrence', src: logoArthurLawrence },
-      { type: 'logo', name: 'JKU Consultants', src: logoJKUConsultants },
-    ],
-  },
-  {
-    tier: 'Partner',
-    logoHeight: 130,
-    entries: [
-      { type: 'logo', name: 'Qadeer Maudoodi & Mazhar PLLC', src: logoQadeer },
-      { type: 'logo', name: 'HRSS LLP CPAs & Advisors', src: logoHRSS },
-      { type: 'logo', name: 'Ethos Group', src: logoEthosGroup },
-      { type: 'logo', name: 'BMO Harris Bank', src: logoBMOHarris },
-      { type: 'logo', name: 'Mobiz', src: logoMobiz },
+      { type: 'logo', name: 'Arthur Lawrence', src: logoArthurLawrence100k, href: 'https://www.arthurlawrence.net/' },
     ],
   },
   {
     tier: 'Advocate',
     logoHeight: 120,
     entries: [
-      { type: 'logo', name: 'Higginbotham', src: logoHigginbotham },
-      { type: 'logo', name: 'Farmers & Merchants Bank', src: logoFarmersMerch },
-      { type: 'logo', name: 'Enterprise Bank & Trust', src: logoEnterpriseBank },
-      { type: 'logo', name: 'Dave Cantin Group', src: logoDaveCantin },
-      { type: 'logo', name: 'Chamberlain Hrdlicka', src: logoChamberlain },
-      { type: 'logo', name: 'Arrowhead General Insurance Agency', src: logoArrowhead },
+      { type: 'logo', name: 'Chamberlain Hrdlicka', src: logoChamberlain15k, href: 'https://www.chamberlainlaw.com/' },
     ],
   },
-  {
-    tier: 'Collaborator',
-    logoHeight: 115,
-    entries: [
-      { type: 'logo', name: 'Versa Creative', src: logoVersaCreative },
-      { type: 'logo', name: 'ZT Payments', src: logoZTPayments },
-      { type: 'logo', name: 'Surmount', src: logoSurmount },
-      { type: 'logo', name: 'One Step Diagnostic', src: logoOneStepDiagnostics },
-      { type: 'logo', name: 'Woodvale', src: logoWoodvale },
-      { type: 'logo', name: 'ACE Altus Accountable Care Entity', src: logoACEAltus },
-      { type: 'logo', name: 'Balance Companies', src: logoBalanceCompanies },
-    ],
-  },
-  {
-    tier: 'Supporter',
-    logoHeight: 110,
-    entries: [
-      { type: 'text', name: 'Dallas Capital Bank' },
-      { type: 'text', name: 'Texas Heritage Bank' },
-      { type: 'text', name: 'Stellar Bank' },
-      { type: 'text', name: 'Capital Automotive' },
-      { type: 'text', name: 'Pierpoint' },
-    ],
-  }, 
-  */
 ]
 
 export default function PartnerWallSection() {
@@ -139,10 +87,11 @@ export default function PartnerWallSection() {
                 <span className="flex-1 max-w-[120px]" style={{ height: 1, background: GOLD, opacity: 0.5 }} />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-4 justify-items-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0">
+              <div className={tier === 'Visionary' ? 'grid grid-cols-1 lg:grid-cols-4 justify-items-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0' : 'flex flex-wrap justify-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0'}>
                 {entries.map((entry) =>
                   entry.type === 'logo' ? (
-                    <img
+                    <a key={entry.name} href={entry.href} target="_blank" rel="noreferrer" aria-label={`Visit ${entry.name}`}>
+                      <img
                       key={entry.name}
                       src={entry.src}
                       alt={entry.name}
@@ -156,7 +105,8 @@ export default function PartnerWallSection() {
                       }}
                       onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = '0.75')}
                       onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
-                    />
+                      />
+                    </a>
                   ) : (
                     <p
                       key={entry.name}

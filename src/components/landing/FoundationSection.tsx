@@ -117,9 +117,9 @@ export default function FoundationSection() {
 
             <div className="grid grid-cols-3 gap-2 sm:gap-4">
               {[
-                { num: '1,200+', label: 'Youth Served' },
-                { num: '48', label: 'Partner Schools' },
-                { num: '$2.1M', label: 'Raised to Date' },
+                { num: '75,000+', label: 'Children Served' },
+                { num: '17', label: 'States Served' },
+                { num: '$4.2M+', label: 'Raised to Date' },
               ].map((stat) => (
                 <div key={stat.label} className="min-w-0 p-2 text-center sm:p-5" style={{ border: 'none' }}>
                   <p className="font-quiche text-2xl sm:text-3xl lg:text-4xl mb-1" style={{ color: GOLD }}>
