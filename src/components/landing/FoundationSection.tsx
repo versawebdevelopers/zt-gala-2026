@@ -125,7 +125,7 @@ export default function FoundationSection() {
                   <p className="font-quiche text-2xl sm:text-3xl lg:text-4xl mb-1" style={{ color: GOLD }}>
                     {stat.num}
                   </p>
-                  <p className="text-sm leading-5 tracking-[0.08em] uppercase sm:text-sm sm:leading-8 sm:tracking-[0.2em]" style={{ color: 'rgba(252,249,244,0.45)' }}>
+                  <p className="text-sm leading-5 tracking-[0.08em] uppercase sm:text-sm sm:leading-5 sm:tracking-[0.2em]" style={{ color: 'rgba(252,249,244,0.45)' }}>
                     {stat.label}
                   </p>
                 </div>
