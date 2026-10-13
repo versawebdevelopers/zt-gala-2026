@@ -1,4 +1,5 @@
 import foundationHero from '@/imports/ZTA-Background-image.png'
+import OptimizedImage from '@/components/OptimizedImage'
 import foundationHeroMobile from '@/imports/baseball_background-mobile.png'
 import ztaWordMarkIcon from '@/imports/ZT_Athletics_Word_Mark_Icon.png'
 import ztaWordMark from '@/imports/ZT_Athletics_Word_Mark-2.png'
@@ -65,8 +66,10 @@ export default function FoundationSection() {
 
   return (
     <section id="foundation" style={{ background: OBSIDIAN }} className="relative py-24 overflow-hidden">
-      <img
+      <OptimizedImage
         src={ztaWordMarkIcon}
+        sizes="560px"
+        maxWidth={1280}
         aria-hidden="true"
         className="absolute pointer-events-none select-none"
         style={{
@@ -78,8 +81,9 @@ export default function FoundationSection() {
         }}
       />
       <div className="absolute inset-y-0 right-0 pointer-events-none hidden sm:block" style={{ width: '52%' }}>
-        <img
+        <OptimizedImage
           src={foundationHero}
+          sizes="52vw"
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover object-[18%_center]"
@@ -97,8 +101,9 @@ export default function FoundationSection() {
           <div className="relative overflow-hidden sm:overflow-visible -mx-4 -mt-24 sm:mx-0 sm:mt-0">
             {/* Mobile-only background, scoped to this column's own height instead of the full section */}
             <div className="absolute inset-0 sm:hidden pointer-events-none" aria-hidden="true">
-              <img
+              <OptimizedImage
                 src={foundationHeroMobile}
+                maxWidth={1920}
                 alt=""
                 className="w-full h-full object-cover object-[65%_center]"
               />
@@ -110,7 +115,7 @@ export default function FoundationSection() {
             <h2 className="font-quiche text-3xl sm:text-4xl lg:text-5xl leading-tight mb-3 sm:mb-6" style={{ color: CREAM }}>
               Supporting the
             </h2>
-            <img src={ztaWordMark} alt="ZT Athletics Foundation" className="mb-5 w-[210px] sm:w-[280px] lg:w-[320px]" style={{ mixBlendMode: 'screen' }} />
+            <OptimizedImage src={ztaWordMark} alt="ZT Athletics Foundation" sizes="(min-width: 1024px) 320px, (min-width: 640px) 280px, 210px" maxWidth={960} className="mb-5 w-[210px] sm:w-[280px] lg:w-[320px]" style={{ mixBlendMode: 'screen' }} />
             <p className="text-base leading-7 sm:text-sm sm:leading-8 mb-6" style={{ color: 'rgba(252,249,244,0.60)' }}>
               The ZT Athletics Foundation fosters youth development and community engagement through sports, integrating teamwork and discipline into young athletes' lives while promoting physical fitness and personal growth. It offers various programs and clinics, connecting communities with opportunities for skill development and character building.
             </p>

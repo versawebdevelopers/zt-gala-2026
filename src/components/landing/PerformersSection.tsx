@@ -2,6 +2,7 @@ import chesterPitts from '@/imports/Chester_Pitts-portrait-1.png'
 import leAnnRimes from '@/imports/LAR_High-Res-jpgLR_SB_PC_S7_1235_r_copy.jpg'
 import leAnnLogo from '@/imports/LeAnnRimes_2024_LOGO-2.png'
 import sponsorshipBg from '@/imports/ChatGPT_Image_Aug_14__2026__03_09_52_PM.png'
+import OptimizedImage from '@/components/OptimizedImage'
 
 const DEEP = '#2B1B0C'
 const GOLD = '#C6A261'
@@ -28,9 +29,10 @@ export default function PerformersSection() {
             }}
           >
             <div className="relative flex-shrink-0 lg:w-[45%] overflow-hidden" style={{ minHeight: 480 }}>
-              <img
+              <OptimizedImage
                 src={leAnnRimes}
                 alt="LeAnn Rimes — Headlining Artist"
+                sizes="(min-width: 1280px) 830px, (min-width: 1024px) 70vw, 155vw"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ objectPosition: '65% 20%', transform: 'scale(1.55)', transformOrigin: '65% 25%' }}
               />
@@ -41,7 +43,7 @@ export default function PerformersSection() {
             </div>
 
             <div className="flex flex-col justify-center p-10 lg:p-14 flex-1">
-              <img src={leAnnLogo} alt="LeAnn Rimes" className="mb-6" style={{ width: 260, mixBlendMode: 'screen' }} />
+              <OptimizedImage src={leAnnLogo} alt="LeAnn Rimes" sizes="260px" maxWidth={960} className="mb-6" style={{ width: 260, mixBlendMode: 'screen' }} />
               <p className="text-[11px] tracking-[0.35em] uppercase mb-5" style={{ color: GOLD }}>Bio</p>
               <p className="text-base leading-7 mb-5 sm:text-sm" style={{ color: 'rgba(252,249,244,0.68)' }}>
                 LeAnn Rimes is an internationally acclaimed, multi-platinum-selling artist whose genre-defying career has spanned nearly three decades. She has released 21 albums and 71 singles to radio worldwide. Rimes has sold over 48 million records globally, earned eight Grammy® nominations and two wins, and made history as the youngest solo artist ever to receive a Grammy.
@@ -76,13 +78,15 @@ export default function PerformersSection() {
               </p>
             </div>
             <div className="order-1 h-[300px] w-full flex-shrink-0 overflow-hidden sm:order-2 sm:h-auto sm:w-72" style={{ minHeight: '320px' }}>
-              <img src={chesterPitts} alt="Chester Pitts" className="w-full h-full object-cover object-top" />
+              <OptimizedImage src={chesterPitts} alt="Chester Pitts" sizes="320px" maxWidth={960} className="w-full h-full object-cover object-top" />
             </div>
           </div>
         </div>
       </div>
 
-      <div
+      <OptimizedImage
+        src={sponsorshipBg}
+        alt=""
         aria-hidden="true"
         style={{
           position: 'absolute',
@@ -91,9 +95,8 @@ export default function PerformersSection() {
           width: '100%',
           height: '55%',
           pointerEvents: 'none',
-          backgroundImage: `url(${sponsorshipBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center bottom',
+          objectFit: 'cover',
+          objectPosition: 'center bottom',
           maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%)',
           zIndex: 0,

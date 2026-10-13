@@ -1,5 +1,6 @@
 import footerBg from '@/imports/Footer-1.png'
 import mobileFooterBg from '@/imports/footer_background-mobile.png'
+import OptimizedImage, { optimizedImageSrcSet } from '@/components/OptimizedImage'
 
 const GOLD = '#C6A261'
 const CREAM = '#FCF9F4'
@@ -9,9 +10,10 @@ export default function ContactSection() {
   return (
     <section className="relative py-20 sm:py-32 overflow-hidden">
       <picture className="absolute inset-0 pointer-events-none select-none">
-        <source media="(max-width: 639px)" srcSet={mobileFooterBg} />
-        <img
+        <source media="(max-width: 639px)" srcSet={optimizedImageSrcSet(mobileFooterBg, 1920) ?? mobileFooterBg} sizes="100vw" />
+        <OptimizedImage
           src={footerBg}
+          alt=""
           aria-hidden="true"
           className="w-full h-full object-cover"
           style={{ objectPosition: '30% center' }}

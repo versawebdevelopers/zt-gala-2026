@@ -1,4 +1,5 @@
 import sponsorshipBg from '@/imports/ChatGPT_Image_Aug_14__2026__03_09_52_PM.png'
+import OptimizedImage from '@/components/OptimizedImage'
 
 const LUX_GOLD = '#C6A261'
 const LUX_MUTED = 'rgba(252,249,244,0.42)'
@@ -134,7 +135,7 @@ export default function SponsorshipSection() {
         }
       `}</style>
 
-      <img src={sponsorshipBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
+      <OptimizedImage src={sponsorshipBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
       <div className="absolute inset-0" style={{ background: 'rgba(27,14,4,0.62)' }} />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="text-center mb-12 sm:mb-16">

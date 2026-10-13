@@ -12,6 +12,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     base: process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
+    define: {
+      'import.meta.env.VITE_VERCEL_IMAGE_OPTIMIZATION': JSON.stringify(
+        process.env.VERCEL === '1' && !emitSourcemaps ? '1' : '0',
+      ),
+    },
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,

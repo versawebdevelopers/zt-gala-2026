@@ -1,4 +1,5 @@
 import partnerBg from '@/imports/742094b7-e142-4e6e-b856-88c021904120.png'
+import OptimizedImage from '@/components/OptimizedImage'
 import logoACE from '@/imports/ACE_Community_Healthcare_logo.png'
 import logoCapitalOneHotel from '@/imports/Capital_One_Hotel_Group_logo.png'
 import logoCityAmbulance from '@/imports/City_Ambulance_logo.png'
@@ -65,7 +66,7 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
 export default function PartnerWallSection() {
   return (
     <section className="relative w-full py-20 overflow-hidden">
-      <img src={partnerBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
+      <OptimizedImage src={partnerBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
       <div className="relative z-10 max-w-[90rem] mx-auto px-4 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="font-quiche text-4xl lg:text-5xl mb-3" style={{ color: '#4D310A' }}>
@@ -91,10 +92,12 @@ export default function PartnerWallSection() {
                 {entries.map((entry) =>
                   entry.type === 'logo' ? (
                     <a key={entry.name} href={entry.href} target="_blank" rel="noreferrer" aria-label={`Visit ${entry.name}`}>
-                      <img
+                      <OptimizedImage
                       key={entry.name}
                       src={entry.src}
                       alt={entry.name}
+                      sizes="(min-width: 1024px) 360px, 100vw"
+                      maxWidth={1920}
                       className="max-w-full"
                       style={{
                         height: `clamp(${Math.min(150, logoHeight * 0.75)}px, 40vw, ${logoHeight}px)`,

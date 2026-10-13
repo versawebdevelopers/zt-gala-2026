@@ -2,6 +2,7 @@ import heroBackground from '@/imports/Hero_background.png'
 import mobileHeroBackground from '@/imports/topbanner_background-mobile.png'
 import ztIconHeadline from '@/imports/heading-v2.png'
 import ztcWordmark from '@/imports/ZTC-Wordmark.png'
+import OptimizedImage, { optimizedImageSrcSet } from '@/components/OptimizedImage'
 
 const GOLD = '#C6A261'
 const GOLD_LIGHT = '#E2C98F'
@@ -14,8 +15,8 @@ export default function HeroSection() {
     <section id="details" className="relative min-h-0 sm:min-h-screen flex flex-col items-center justify-start sm:justify-center overflow-hidden">
       <div className="absolute inset-0">
         <picture>
-          <source media="(max-width: 639px)" srcSet={mobileHeroBackground} />
-          <img src={heroBackground} alt="" className="w-full h-full object-cover object-center" />
+          <source media="(max-width: 639px)" srcSet={optimizedImageSrcSet(mobileHeroBackground, 1920) ?? mobileHeroBackground} sizes="100vw" />
+          <OptimizedImage src={heroBackground} alt="" loading="eager" fetchPriority="high" className="w-full h-full object-cover object-center" />
         </picture>
         <div
           className="absolute inset-x-0 bottom-0 hidden sm:block"
@@ -45,15 +46,21 @@ export default function HeroSection() {
             }
           }
         `}</style>
-        <img
+        <OptimizedImage
           src={ztcWordmark}
           alt="ZT Corporate"
+          sizes="(min-width: 640px) 220px, 260px"
+          maxWidth={640}
+          loading="eager"
           className="relative top-20 sm:top-14 w-[260px] sm:w-[220px] h-auto object-contain mb-2"
           style={{ mixBlendMode: 'screen' }}
         />
-        <img
+        <OptimizedImage
           src={ztIconHeadline}
           alt="ZT Corporate Chairman's Gala"
+          sizes="(min-width: 1280px) 672px, (min-width: 1024px) 576px, (min-width: 640px) 448px, 340px"
+          maxWidth={1920}
+          loading="eager"
           className="relative top-20 sm:top-14 w-full max-w-[340px] sm:max-w-md lg:max-w-xl xl:max-w-2xl h-auto object-contain mb-5 sm:mb-10"
         />
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'wouter'
 import { VideoModal } from '@/components/landing/VideoModal'
+import OptimizedImage from '@/components/OptimizedImage'
 import gala2025Recap from '@/imports/2025 post Gala recap video.mp4'
 
 // ── Gala 2024 photos
@@ -84,7 +85,7 @@ function CarouselSlot({
         <div key={i} className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
           style={{ opacity: bothReal ? (i === active ? 1 : 0) : 1 }}>
           {src ? (
-            <img src={src} alt="" className="w-full h-full object-cover" />
+            <OptimizedImage src={src} alt="" sizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 100vw" maxWidth={1920} className="w-full h-full object-cover" />
           ) : (
             <MosaicPlaceholder label={label} />
           )}
@@ -111,7 +112,7 @@ function VideoSlide({ label, src, year, videoUrl }: { label: string; src?: strin
       onClick={() => videoUrl && setModalOpen(true)}
     >
       {src ? (
-        <img src={src} alt={label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
+        <OptimizedImage src={src} alt={label} sizes="(min-width: 1280px) 1184px, 100vw" maxWidth={2560} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
       ) : (
         <MosaicPlaceholder label={label} />
       )}
@@ -200,7 +201,7 @@ export default function Gallery() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5"
         style={{ background: 'rgba(43,27,12,0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(198,162,97,0.12)' }}>
         <Link href="/">
-          <img src={ztLogoWhite} alt="ZT Corporate" className="h-7 cursor-pointer" />
+          <OptimizedImage src={ztLogoWhite} alt="ZT Corporate" sizes="160px" maxWidth={640} loading="eager" className="h-7 cursor-pointer" />
         </Link>
         <div className="flex items-center gap-8">
           <Link href="/">

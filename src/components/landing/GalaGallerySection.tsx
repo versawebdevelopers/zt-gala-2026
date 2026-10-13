@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { VideoModal } from './VideoModal'
+import OptimizedImage from '@/components/OptimizedImage'
 import gala2025Recap from '@/imports/2025 post Gala recap video.mp4'
 import pgVid1 from '@/imports/2024_Gala_-_Video_Thumbnail-1.png'
 import pgL1 from '@/imports/2024_Gala_Photo_Collage-Landscape-1-1.png'
@@ -137,7 +138,7 @@ export function CarouselSlot({
           style={{ opacity: bothReal ? (i === active ? 1 : 0) : 1 }}
         >
           {src ? (
-            <img src={src} alt="ZT Baseball Foundation" className="gallery-media w-full h-full object-cover" style={{ objectPosition }} />
+            <OptimizedImage src={src} alt="ZT Baseball Foundation" sizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 100vw" maxWidth={1920} className="gallery-media w-full h-full object-cover" style={{ objectPosition }} />
           ) : (
             <MosaicPlaceholder label={label} />
           )}
@@ -196,7 +197,7 @@ export function VideoCarouselSlot({
       onClick={() => videoUrl && setModalOpen(true)}
     >
       <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out" style={{ opacity: active === 0 ? 1 : 0 }}>
-        <img src={thumbnail} alt={`${name} testimonial`} className="gallery-media w-full h-full object-cover object-center" />
+        <OptimizedImage src={thumbnail} alt={`${name} testimonial`} sizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 100vw" maxWidth={1920} className="gallery-media w-full h-full object-cover object-center" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(43,27,12,0.75) 0%, rgba(43,27,12,0.12) 55%, transparent 100%)' }} />
         <div className="absolute inset-0 flex items-center justify-center">
           <div
@@ -214,7 +215,7 @@ export function VideoCarouselSlot({
       </div>
 
       <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out" style={{ opacity: active === 1 ? 1 : 0 }}>
-        <img src={altImage} alt="ZT Baseball Foundation" className="gallery-media w-full h-full object-cover" />
+        <OptimizedImage src={altImage} alt="ZT Baseball Foundation" sizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 100vw" maxWidth={1920} className="gallery-media w-full h-full object-cover" />
       </div>
 
       {modalOpen && videoUrl && <VideoModal url={videoUrl} onClose={() => setModalOpen(false)} />}
@@ -227,8 +228,9 @@ export function MobileWideSlideshow({ items, backgroundColor = 'transparent', fi
 
   return (
     <div className="mobile-wide-slideshow relative w-full overflow-hidden" style={{ background: backgroundColor, aspectRatio: fixedAspectRatio }}>
-      <img
+      <OptimizedImage
         src={items[active]}
+        maxWidth={1920}
         alt="Gallery photo"
         className={`gallery-media mobile-wide-media w-full ${fixedAspectRatio ? 'absolute inset-0 h-full object-contain' : 'block h-auto'}`}
       />
@@ -241,7 +243,7 @@ export function MobileVerticalSlideshow({ items, backgroundColor = 'transparent'
 
   return (
     <div className="mobile-vertical-slideshow relative w-full overflow-hidden" style={{ background: backgroundColor }}>
-      <img src={items[active]} alt="Gallery photo" className="gallery-media block w-full h-auto" />
+      <OptimizedImage src={items[active]} alt="Gallery photo" maxWidth={1920} className="gallery-media block w-full h-auto" />
     </div>
   )
 }
@@ -254,7 +256,7 @@ export function MobileVideoSlideshow({ items, backgroundColor = 'transparent' }:
   return (
     <div className="mobile-video-slideshow relative w-full overflow-hidden" style={{ aspectRatio: '16 / 9', background: backgroundColor }}>
       <button type="button" className="relative w-full h-full" onClick={() => setModalOpen(true)} aria-label={`Play ${item.name}`}>
-        <img src={item.src} alt={`${item.name} testimonial`} className="gallery-media w-full h-full object-contain" style={{ objectPosition: 'center top' }} />
+        <OptimizedImage src={item.src} alt={`${item.name} testimonial`} maxWidth={1920} className="gallery-media w-full h-full object-contain" style={{ objectPosition: 'center top' }} />
         <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <span className="flex items-center justify-center" style={{ width: 48, height: 48, border: `1px solid ${GOLD}`, background: 'rgba(43,27,12,0.6)' }}>
             <svg width="15" height="15" viewBox="0 0 15 15" fill={GOLD} aria-hidden="true"><polygon points="4,2 13,7.5 4,13" /></svg>
@@ -310,7 +312,7 @@ export default function GalaGallerySection() {
 
   return (
     <section id="past-galas" className="relative pb-12 sm:pb-24 overflow-hidden" style={{ paddingTop: 40 }}>
-      <img src={galaBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
+      <OptimizedImage src={galaBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" />
       <div className="absolute inset-0" style={{ background: 'rgba(231,220,203,0.78)' }} />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="text-center mb-12 sm:mb-16">

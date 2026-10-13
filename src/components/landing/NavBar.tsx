@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import ztwayLogo from '@/imports/ZTWAY_Logo.png'
+import OptimizedImage from '@/components/OptimizedImage'
 
 const GOLD = '#C6A261'
 const GOLD_LIGHT = '#E2C98F'
@@ -40,7 +41,7 @@ export default function NavBar() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
         <a href="#" className="flex items-center flex-shrink-0">
-          <img src={ztwayLogo} alt="ZTWAY" className="h-10 w-auto object-contain" />
+          <OptimizedImage src={ztwayLogo} alt="ZTWAY" sizes="160px" maxWidth={640} loading="eager" className="h-10 w-auto object-contain" />
         </a>
 
         <div className="hidden md:flex items-center gap-7">
