@@ -31,6 +31,18 @@ import logoBadarFam from '@/imports/200k-BadarFamilyOffice.png'
 import logoZTCorporate from '@/imports/200k-zt corporate.png'
 import logoArthurLawrence100k from '@/imports/100k-arthur lawrence.png'
 import logoChamberlain15k from '@/imports/15k-chamberlain.png'
+import logoPashaLaw50k from '@/imports/50k-pashaLaw.png'
+import logoJanney50k from '@/imports/50k-janney.png'
+import logoBMO50k from '@/imports/50k-BMO.png'
+import logoCityAmbulance50k from '@/imports/50k-cityAmbulance.png'
+import logoArrowhead25k from '@/imports/25k-arrowhead.png'
+import logoMedicalCareCenter25k from '@/imports/25k-medicalCareCenter.png'
+import logoQadeer25k from '@/imports/25k-Qadeer.png'
+import logoGiorgioArmani25k from '@/imports/25k-GiorgieArmani.png'
+import logoFarmerMerchant25k from '@/imports/25k-FarmerMerchant.png'
+import logoEthosGroup25k from '@/imports/25k-EthosGroup.png'
+import logoOmega25k from '@/imports/25k-OmegaAdvisors.png'
+import logoEnterpriseBank25k from '@/imports/25k-enterpriseBank.png'
 
 const GOLD = '#C6A261'
 
@@ -52,6 +64,30 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
     logoHeight: 160,
     entries: [
       { type: 'logo', name: 'Arthur Lawrence', src: logoArthurLawrence100k, href: 'https://www.arthurlawrence.net/' },
+    ],
+  },
+  {
+    tier: 'Ambassador',
+    logoHeight: 140,
+    entries: [
+      { type: 'logo', name: 'Pasha Law', src: logoPashaLaw50k, href: 'https://www.pashalaw.com/' },
+      { type: 'logo', name: 'Janney', src: logoJanney50k, href: 'https://www.janney.com/' },
+      { type: 'logo', name: 'BMO', src: logoBMO50k, href: 'https://www.bmo.com/en-us/main/personal/' },
+      { type: 'logo', name: 'City Ambulance', src: logoCityAmbulance50k, href: 'https://cityambu.com/' },
+    ],
+  },
+  {
+    tier: 'Partner',
+    logoHeight: 120,
+    entries: [
+      { type: 'logo', name: 'Arrowhead', src: logoArrowhead25k, href: 'https://www.arrowheadgrp.com/' },
+      { type: 'logo', name: 'Medical Care Center', src: logoMedicalCareCenter25k, href: 'https://medicalcarecenter.com/' },
+      { type: 'logo', name: 'Qadeer', src: logoQadeer25k, href: 'https://qadeerlaw.com/' },
+      { type: 'logo', name: 'Giorgio Armani', src: logoGiorgioArmani25k, href: 'https://www.armani.com/en-us/giorgio-armani/experience/' },
+      { type: 'logo', name: 'Farmer and Merchant', src: logoFarmerMerchant25k, href: 'https://www.fmb.com/' },
+      { type: 'logo', name: 'Ethos Group', src: logoEthosGroup25k, href: 'https://www.ethosgroup.com/' },
+      { type: 'logo', name: 'Omega', src: logoOmega25k, href: 'https://omegadvisors.com/' },
+      { type: 'logo', name: 'Enterprise Bank', src: logoEnterpriseBank25k, href: 'https://www.enterprisebank.com/' },
     ],
   },
   {
