@@ -43,10 +43,16 @@ import logoFarmerMerchant25k from '@/imports/25k-FarmerMerchant.png'
 import logoEthosGroup25k from '@/imports/25k-EthosGroup.png'
 import logoOmega25k from '@/imports/25k-OmegaAdvisors.png'
 import logoEnterpriseBank25k from '@/imports/25k-enterpriseBank.png'
+import logoHollandKnight10k from '@/imports/10k-Holland & Knight Law.png'
+import logoTexasHeritage10k from '@/imports/10k-Texas Heritage Bank-Liberty Capital.png'
+import logoUrbanArc10k from '@/imports/10k-Urban Arc Properties.png'
+import logoHigginbotham15k from '@/imports/15k-Higginbotham.png'
+import logoOneStep15k from '@/imports/15k-One Step Dianostic.png'
+import logoWoodforest15k from '@/imports/15k-Woodforest Bank.png'
 
 const GOLD = '#C6A261'
 
-type SponsorEntry = { type: 'logo'; name: string; src: string; href: string } | { type: 'text'; name: string }
+type SponsorEntry = { type: 'logo'; name: string; src: string; href?: string } | { type: 'text'; name: string }
 
 const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[] }[] = [
   {
@@ -61,14 +67,14 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
   },
   {
     tier: 'Innovator',
-    logoHeight: 160,
+    logoHeight: 190,
     entries: [
       { type: 'logo', name: 'Arthur Lawrence', src: logoArthurLawrence100k, href: 'https://www.arthurlawrence.net/' },
     ],
   },
   {
     tier: 'Ambassador',
-    logoHeight: 140,
+    logoHeight: 180,
     entries: [
       { type: 'logo', name: 'Pasha Law', src: logoPashaLaw50k, href: 'https://www.pashalaw.com/' },
       { type: 'logo', name: 'Janney', src: logoJanney50k, href: 'https://www.janney.com/' },
@@ -78,7 +84,7 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
   },
   {
     tier: 'Partner',
-    logoHeight: 120,
+    logoHeight: 150,
     entries: [
       { type: 'logo', name: 'Arrowhead', src: logoArrowhead25k, href: 'https://www.arrowheadgrp.com/' },
       { type: 'logo', name: 'Medical Care Center', src: logoMedicalCareCenter25k, href: 'https://medicalcarecenter.com/' },
@@ -92,9 +98,21 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
   },
   {
     tier: 'Advocate',
-    logoHeight: 120,
+    logoHeight: 125,
     entries: [
       { type: 'logo', name: 'Chamberlain Hrdlicka', src: logoChamberlain15k, href: 'https://www.chamberlainlaw.com/' },
+      { type: 'logo', name: 'Higginbotham', src: logoHigginbotham15k, href: 'https://www.higginbotham.com/' },
+      { type: 'logo', name: 'One Step Diagnostic', src: logoOneStep15k, href: 'https://www.onestepdiagnostic.com/' },
+      { type: 'logo', name: 'Woodforest Bank', src: logoWoodforest15k, href: 'https://www.woodforest.com/' },
+    ],
+  },
+  {
+    tier: 'Collaborator',
+    logoHeight: 100,
+    entries: [
+      { type: 'logo', name: 'Holland & Knight', src: logoHollandKnight10k, href: 'https://www.hklaw.com/en' },
+      { type: 'logo', name: 'Texas Heritage Bank - Liberty Capital', src: logoTexasHeritage10k, href: 'https://www.texasheritage.bank/' },
+      { type: 'logo', name: 'Urban Arc Properties', src: logoUrbanArc10k, href: 'https://urbanarcproperties.com/' },
     ],
   },
 ]
@@ -125,28 +143,37 @@ export default function PartnerWallSection() {
               </div>
 
               <div className={tier === 'Visionary' ? 'grid grid-cols-1 lg:grid-cols-4 justify-items-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0' : 'flex flex-wrap justify-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0'}>
-                {entries.map((entry) =>
-                  entry.type === 'logo' ? (
-                    <a key={entry.name} href={entry.href} target="_blank" rel="noreferrer" aria-label={`Visit ${entry.name}`}>
+                {entries.map((entry) => {
+                  if (entry.type === 'logo') {
+                    const logo = (
                       <OptimizedImage
-                      key={entry.name}
-                      src={entry.src}
-                      alt={entry.name}
-                      sizes="(min-width: 1024px) 360px, 100vw"
-                      maxWidth={1920}
-                      className="max-w-full"
-                      style={{
-                        height: `clamp(${Math.min(150, logoHeight * 0.75)}px, 40vw, ${logoHeight}px)`,
-                        width: 'auto',
-                        objectFit: 'contain',
-                        mixBlendMode: 'multiply',
-                        transition: 'opacity 0.2s',
-                      }}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = '0.75')}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
+                        src={entry.src}
+                        alt={entry.name}
+                        sizes="(min-width: 1024px) 360px, 100vw"
+                        maxWidth={1920}
+                        className="max-w-full"
+                        style={{
+                          height: `clamp(${logoHeight * 0.6}px, ${(logoHeight / 250) * 40}vw, ${logoHeight}px)`,
+                          width: 'auto',
+                          objectFit: 'contain',
+                          mixBlendMode: 'multiply',
+                          transition: 'opacity 0.2s',
+                        }}
+                        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = '0.75')}
+                        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
                       />
-                    </a>
-                  ) : (
+                    )
+
+                    return entry.href ? (
+                      <a key={entry.name} href={entry.href} target="_blank" rel="noreferrer" aria-label={`Visit ${entry.name}`}>
+                        {logo}
+                      </a>
+                    ) : (
+                      <div key={entry.name}>{logo}</div>
+                    )
+                  }
+
+                  return (
                     <p
                       key={entry.name}
                       className="font-medium tracking-wide text-center leading-snug"
@@ -158,8 +185,8 @@ export default function PartnerWallSection() {
                     >
                       {entry.name}
                     </p>
-                  ),
-                )}
+                  )
+                })}
               </div>
             </div>
           ))}
