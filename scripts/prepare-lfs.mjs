@@ -100,6 +100,7 @@ export async function prepareLfs({
     cwd, env: buildEnv, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
   })
   let installation
+  let temporaryHooks
   try {
     if (probe.error || probe.status !== 0) {
       installation = await install({ cwd, env: buildEnv, run })
@@ -107,6 +108,20 @@ export async function prepareLfs({
       git(['lfs', 'version'], 'Installed Git LFS cannot execute. Check build-host permissions and architecture.')
     } else {
       console.log(probe.stdout.trim())
+    }
+    console.log('[prebuild:lfs] Initializing repository-local LFS filters (no hooks)...')
+    git(
+      ['lfs', 'install', '--local', '--skip-repo'],
+      'Unable to initialize repository-local Git LFS filters; check repository Git metadata and config write permissions.',
+    )
+    // LFS filter-process can auto-install hooks during checkout despite --skip-repo.
+    temporaryHooks = mkdtempSync(path.join(cwd, '.tmp-lfs-hooks-'))
+    const configIndex = Number(buildEnv.GIT_CONFIG_COUNT || '0')
+    buildEnv = {
+      ...buildEnv,
+      GIT_CONFIG_COUNT: String(configIndex + 1),
+      [`GIT_CONFIG_KEY_${configIndex}`]: 'core.hooksPath',
+      [`GIT_CONFIG_VALUE_${configIndex}`]: temporaryHooks,
     }
     console.log('[prebuild:lfs] Downloading LFS assets for the current checkout...')
     git(
@@ -137,7 +152,11 @@ export async function prepareLfs({
     }
     console.log(`[prebuild:lfs] Verified ${files.length} LFS assets; starting Vite build.`)
   } finally {
-    installation?.cleanup()
+    try {
+      if (temporaryHooks) rmSync(temporaryHooks, { recursive: true, force: true })
+    } finally {
+      installation?.cleanup()
+    }
   }
 }
 

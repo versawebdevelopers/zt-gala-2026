@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import os from 'node:os'
@@ -47,6 +48,7 @@ test('uses existing Git LFS without installation and verifies filenames containi
   assert.deepEqual(options.calls.map(({ args }) => args), [
     ['--version'],
     ['lfs', 'version'],
+    ['lfs', 'install', '--local', '--skip-repo'],
     ['lfs', 'pull', '--include=', '--exclude='],
     ['lfs', 'ls-files', '--json'],
   ])
@@ -55,6 +57,93 @@ test('uses existing Git LFS without installation and verifies filenames containi
     assert.equal(call.options.cwd, options.cwd)
     assert.equal(call.options.env.GIT_TERMINAL_PROMPT, '0')
   }
+})
+
+test('initializes a fresh checkout before pull can hydrate its pointers', async (t) => {
+  const options = fixture(t, 'version https://git-lfs.github.com/spec/v1\n')
+  const run = options.run
+  let initialized = false
+  options.run = (...args) => {
+    if (args[1][1] === 'install') {
+      assert.deepEqual(args[1], ['lfs', 'install', '--local', '--skip-repo'])
+      initialized = true
+    }
+    if (args[1][1] === 'pull' && initialized) {
+      writeFileSync(path.join(options.cwd, options.name), 'hydrated media')
+    }
+    return run(...args)
+  }
+  await prepareLfs(options)
+  assert.equal(initialized, true)
+  assert.equal(readFileSync(path.join(options.cwd, options.name), 'utf8'), 'hydrated media')
+})
+
+test('stops before pull if repository-local initialization fails', async (t) => {
+  const options = fixture(t)
+  const run = options.run
+  options.run = (...args) => args[1][1] === 'install' ? { status: 1 } : run(...args)
+  await assert.rejects(prepareLfs(options), /Unable to initialize repository-local Git LFS filters/)
+  assert.equal(options.calls.some(({ args }) => args[1] === 'pull'), false)
+})
+
+test('real fresh repository reproduces skipped checkout and hydrates after local initialization', async (t) => {
+  const { cwd } = fixture(t)
+  const env = {
+    ...process.env,
+    SITEGROUND_LFS_PREBUILD: '1',
+    GIT_CONFIG_GLOBAL: path.join(cwd, 'isolated-global-config'),
+    GIT_CONFIG_NOSYSTEM: '1',
+  }
+  const probe = spawnSync('git', ['lfs', 'version'], { env, encoding: 'utf8' })
+  if (probe.error || probe.status !== 0) {
+    t.skip('Integration check requires local Git and Git LFS')
+    return
+  }
+  const git = (...args) => {
+    const result = spawnSync('git', args, { cwd, env, encoding: 'utf8' })
+    assert.equal(result.status, 0, `${args.join(' ')}: ${result.stderr}`)
+    return result
+  }
+  git('init')
+  const media = Buffer.from('small cached media fixture')
+  const oid = createHash('sha256').update(media).digest('hex')
+  const pointer = `version https://git-lfs.github.com/spec/v1\noid sha256:${oid}\nsize ${media.length}\n`
+  writeFileSync(path.join(cwd, '.gitattributes'), '*.png filter=lfs diff=lfs merge=lfs -text\n')
+  writeFileSync(path.join(cwd, 'asset.png'), pointer)
+  git('add', '--', '.gitattributes', 'asset.png')
+  git('-c', 'user.name=LFS Test', '-c', 'user.email=lfs-test@example.invalid', 'commit', '-m', 'Fixture')
+  git('remote', 'add', 'origin', cwd)
+  const objectDirectory = path.join(cwd, '.git', 'lfs', 'objects', oid.slice(0, 2), oid.slice(2, 4))
+  mkdirSync(objectDirectory, { recursive: true })
+  writeFileSync(path.join(objectDirectory, oid), media)
+  const before = git('lfs', 'pull')
+  assert.match(before.stdout + before.stderr, /Skipping object checkout, Git LFS is not installed for this repository/)
+  assert.equal(readFileSync(path.join(cwd, 'asset.png'), 'utf8'), pointer)
+  const hooksDirectory = path.join(cwd, '.git', 'hooks')
+  const hooksBefore = readdirSync(hooksDirectory)
+  await prepareLfs({ cwd, env })
+  assert.deepEqual(readFileSync(path.join(cwd, 'asset.png')), media)
+  assert.equal(git('config', '--local', '--get', 'filter.lfs.required').stdout.trim(), 'true')
+  assert.equal(existsSync(env.GIT_CONFIG_GLOBAL), false)
+  assert.deepEqual(readdirSync(hooksDirectory), hooksBefore)
+  assert.equal(readFileSync(path.join(cwd, '.git', 'config'), 'utf8').includes('hooksPath'), false)
+  assert.deepEqual(readdirSync(cwd).filter((name) => name.startsWith('.tmp-lfs-')), [])
+})
+
+test('isolates automatic hooks without discarding inherited command configuration', async (t) => {
+  const options = fixture(t)
+  Object.assign(options.env, {
+    GIT_CONFIG_COUNT: '1',
+    GIT_CONFIG_KEY_0: 'example.setting',
+    GIT_CONFIG_VALUE_0: 'preserved',
+  })
+  await prepareLfs(options)
+  const { env } = options.calls.find(({ args }) => args[1] === 'pull').options
+  assert.equal(env.GIT_CONFIG_COUNT, '2')
+  assert.equal(env.GIT_CONFIG_KEY_0, 'example.setting')
+  assert.equal(env.GIT_CONFIG_VALUE_0, 'preserved')
+  assert.equal(env.GIT_CONFIG_KEY_1, 'core.hooksPath')
+  assert.equal(existsSync(env.GIT_CONFIG_VALUE_1), false)
 })
 
 test('fails clearly when Git itself cannot be launched without attempting installation', async (t) => {

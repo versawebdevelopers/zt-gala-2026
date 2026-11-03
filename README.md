@@ -40,6 +40,18 @@ on success or failure (an abruptly killed build may leave it until workspace
 cleanup). No root/sudo, package-manager dependency, remote shell script,
 `install.sh`, Git hooks, or global Git configuration changes are involved.
 
+The script initializes repository-local filters using
+`git lfs install --local --skip-repo` before pulling, even when the binary was
+already available. This writes only local repository Git configuration, not
+global configuration or hooks. A binary alone is insufficient in a fresh
+checkout: without these filters, LFS can return success while reporting
+`Skipping object checkout, Git LFS is not installed for this repository.`
+Initialization failure stops the build.
+During pull/validation, a subprocess-only `core.hooksPath` override directs any
+hooks auto-created by LFS's filter process into a separate temporary directory.
+That directory is removed afterward; existing repository hooks and the
+repository's persistent hooks-path setting are left unchanged.
+
 The script then runs `git lfs pull` for the current
 checkout (including all assets regardless of local LFS include/exclude settings),
 and refuses to build if any LFS-tracked file is missing, empty, or still a pointer.
@@ -76,11 +88,14 @@ After these changes are reviewed and made available on the branch SiteGround
 imports, trigger a rebuild from that repository. No custom shell command or SSH
 deployment workflow is needed for this attempt.
 
-SiteGround's previous build reported `git: 'lfs' is not a git command`.
-This option tests whether its builder permits downloading and executing the
-tool instead; that capability, available disk quota, and LFS authentication
-are **not confirmed**. In the build log, look for the npm `prebuild` lifecycle
-step, `Installing pinned Git LFS 3.8.1` if installation is needed, `git-lfs/...`, and
+SiteGround's first build lacked Git LFS; the next test successfully installed
+and executed 3.8.1 but skipped object checkout because the repository was not
+initialized. The script now initializes local filters before pulling.
+Available disk quota and successful LFS hydration remain **unconfirmed**.
+In the build log, look for the npm `prebuild` lifecycle
+step, `Installing pinned Git LFS 3.8.1` if installation is needed, `git-lfs/...`,
+`[prebuild:lfs] Initializing repository-local LFS filters (no hooks)...`,
+`Git LFS initialized.`, and
 `[prebuild:lfs] Downloading LFS assets for the current checkout...`, followed by
 `[prebuild:lfs] Verified ... LFS assets; starting Vite build.`
 Vite output must appear only after verification. Tool download, checksum,
@@ -104,6 +119,9 @@ SiteGround's Git LFS availability, authentication, or download capacity.
 
 Run `node --test scripts/prepare-lfs.test.mjs`. These checks use temporary media,
 mocked downloads/extraction, and simulated Git responses to cover disabled and
-enabled behavior, installation, integrity failures, and cleanup. They do not
+enabled behavior, installation, initialization, integrity failures, and cleanup.
+An integration check (when local Git LFS is available) reproduces the skipped
+checkout in a fresh isolated repository, then hydrates a tiny cached object and
+verifies that global configuration and hooks remain unchanged. They do not
 download the large video or contact SiteGround. No new dependencies are needed;
 dependency lockfiles are unchanged.
