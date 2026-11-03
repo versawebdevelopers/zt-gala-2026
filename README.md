@@ -73,9 +73,25 @@ plus Vite's copied output can consume roughly **2.52 GiB** for media alone.
 Download staging, dependencies, other build output, and simultaneous/previous
 builds add overhead. Budget **at least 4 GiB free** as a practical starting point,
 not a guaranteed upper bound, and sufficient time to download the video.
-The temporary tool adds tens of MB, not another full media copy; it is cleaned
-up, but the LFS object cache is deliberately retained. The script does not
-delete assets/cache to work around a storage limit or guarantee host quotas.
+The temporary tool adds tens of MB, not another full media copy, and is cleaned up.
+
+With `SITEGROUND_LFS_PREBUILD=1`, npm automatically runs
+`scripts/cleanup-lfs.mjs` as `postbuild` **only after `npm run build` succeeds**.
+It removes only this standalone checkout's `.git/lfs/objects`, potentially
+releasing about 860 MiB of retained cache. Hydrated source assets, `dist`, other
+Git metadata, and old builds are untouched. Peak build storage is unchanged:
+the cache is still needed during prebuild/build. Later builds may need to
+download the objects again, consuming bandwidth/LFS allowance.
+
+Cleanup is disabled with an informative skip log unless the flag is exactly `1`.
+It refuses Git worktrees/gitfiles, shared metadata, symlinked checkout paths,
+symlinks/junctions anywhere in the cache path/tree, and unexpected file types.
+It never follows Git metadata paths outside this checkout or custom LFS storage.
+A missing cache is logged as a no-op; unsafe paths or deletion failures fail the
+npm command explicitly, even though Vite may already have produced output.
+Run only in an exclusive build checkout: concurrent processes changing paths
+during cleanup are not supported. Failed/aborted builds do not run postbuild and
+retain their cache; this is not a host-wide quota or old-build cleanup solution.
 
 ### SiteGround repository-import test
 
@@ -117,7 +133,9 @@ SiteGround's Git LFS availability, authentication, or download capacity.
 
 ### Local script checks
 
-Run `node --test scripts/prepare-lfs.test.mjs`. These checks use temporary media,
+Run `node --test scripts/prepare-lfs.test.mjs scripts/cleanup-lfs.test.mjs`.
+Cleanup tests cover opt-in, unsafe paths, failures, and preserved source/output.
+The prebuild checks use temporary media,
 mocked downloads/extraction, and simulated Git responses to cover disabled and
 enabled behavior, installation, initialization, integrity failures, and cleanup.
 An integration check (when local Git LFS is available) reproduces the skipped
