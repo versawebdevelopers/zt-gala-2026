@@ -43,12 +43,14 @@ import logoFarmerMerchant25k from '@/imports/25k-FarmerMerchant.png'
 import logoEthosGroup25k from '@/imports/25k-EthosGroup.png'
 import logoOmega25k from '@/imports/25k-OmegaAdvisors.png'
 import logoEnterpriseBank25k from '@/imports/25k-enterpriseBank.png'
+import logoHRSS25k from '@/imports/25k-HRSS.png'
 import logoHollandKnight10k from '@/imports/10k-Holland & Knight Law.png'
 import logoTexasHeritage10k from '@/imports/10k-Texas Heritage Bank-Liberty Capital.png'
 import logoUrbanArc10k from '@/imports/10k-Urban Arc Properties.png'
 import logoHigginbotham15k from '@/imports/15k-Higginbotham.png'
 import logoOneStep15k from '@/imports/15k-One Step Dianostic.png'
 import logoWoodforest15k from '@/imports/15k-Woodforest Bank.png'
+import logoSunflowerBank15k from '@/imports/15k-SunflowerBank.png'
 
 const GOLD = '#C6A261'
 
@@ -94,6 +96,7 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
       { type: 'logo', name: 'Ethos Group', src: logoEthosGroup25k, href: 'https://www.ethosgroup.com/' },
       { type: 'logo', name: 'Omega', src: logoOmega25k, href: 'https://omegadvisors.com/' },
       { type: 'logo', name: 'Enterprise Bank', src: logoEnterpriseBank25k, href: 'https://www.enterprisebank.com/' },
+      { type: 'logo', name: 'HRSS', src: logoHRSS25k, href: 'https://hrss.cpa/' },
     ],
   },
   {
@@ -104,6 +107,7 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
       { type: 'logo', name: 'Higginbotham', src: logoHigginbotham15k, href: 'https://www.higginbotham.com/' },
       { type: 'logo', name: 'One Step Diagnostic', src: logoOneStep15k, href: 'https://www.onestepdiagnostic.com/' },
       { type: 'logo', name: 'Woodforest Bank', src: logoWoodforest15k, href: 'https://www.woodforest.com/' },
+      { type: 'logo', name: 'Sunflower Bank', src: logoSunflowerBank15k, href: 'https://www.sunflowerbank.com/' },
     ],
   },
   {
