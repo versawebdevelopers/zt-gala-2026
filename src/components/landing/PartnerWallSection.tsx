@@ -35,6 +35,7 @@ import logoPashaLaw50k from '@/imports/50k-pashaLaw.png'
 import logoJanney50k from '@/imports/50k-janney.png'
 import logoBMO50k from '@/imports/50k-BMO.png'
 import logoCityAmbulance50k from '@/imports/50k-cityAmbulance.png'
+import logoJKU50k from '@/imports/50k-Jku.png'
 import logoArrowhead25k from '@/imports/25k-arrowhead.png'
 import logoMedicalCareCenter25k from '@/imports/25k-medicalCareCenter.png'
 import logoQadeer25k from '@/imports/25k-Qadeer.png'
@@ -82,6 +83,7 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
       { type: 'logo', name: 'Janney', src: logoJanney50k, href: 'https://www.janney.com/' },
       { type: 'logo', name: 'BMO', src: logoBMO50k, href: 'https://www.bmo.com/en-us/main/personal/' },
       { type: 'logo', name: 'City Ambulance', src: logoCityAmbulance50k, href: 'https://cityambu.com/' },
+      { type: 'logo', name: 'JKU', src: logoJKU50k },
     ],
   },
   {
