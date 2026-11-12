@@ -68,7 +68,7 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
       { type: 'logo', name: 'Badar Family Office', src: logoBadarFam, href: 'http://badarfamilyoffice.com/', fullRow: true },
       { type: 'logo', name: 'ZT Corporate', src: logoZTCorporate, href: 'https://ztcorporate.com/' },
       { type: 'logo', name: 'ZT Automotive', src: logoZTAutomotive, href: 'https://www.ztautogroup.com/', spacingClassName: 'md:-translate-x-1 lg:-translate-x-4' },
-      { type: 'logo', name: 'ZT Automotive Collection', src: logoZTACollection, href: 'https://www.ztautogroup.com/', spacingClassName: 'mt-4 md:mt-0 md:translate-x-1 lg:translate-x-4' },
+      { type: 'logo', name: 'ZT Automotive Collection', src: logoZTACollection, spacingClassName: 'mt-4 md:mt-0 md:translate-x-1 lg:translate-x-4' },
       { type: 'logo', name: 'ZT Health', src: logoZTHealth, href: 'https://zthealth.com/' },
     ],
   },
