@@ -26,6 +26,7 @@ import logoWoodvale from '@/imports/Woodvale_logo.png'
 import logoACEAltus from '@/imports/ACE_Altus_Accountable_Care_Entity.png'
 import logoBalanceCompanies from '@/imports/Balance_Companies_logo.png'
 import logoZTAutomotive from '@/imports/200k-ZT Automotive.png'
+import logoZTACollection from '@/imports/200k-ZTA Collection.png'
 import logoZTHealth from '@/imports/200k-ZT Health.png'
 import logoBadarFam from '@/imports/200k-BadarFamilyOffice.png'
 import logoZTCorporate from '@/imports/200k-zt corporate.png'
@@ -54,17 +55,20 @@ import logoWoodforest15k from '@/imports/15k-Woodforest Bank.png'
 import logoSunflowerBank15k from '@/imports/15k-SunflowerBank.png'
 
 const GOLD = '#C6A261'
+// Eight desktop columns center the featured logo at the same width as each logo below.
+const VISIONARY_GRID = 'grid grid-cols-1 md:grid-cols-8 gap-x-2 lg:gap-x-6'
 
-type SponsorEntry = { type: 'logo'; name: string; src: string; href?: string } | { type: 'text'; name: string }
+type SponsorEntry = { type: 'logo'; name: string; src: string; href?: string; fullRow?: boolean } | { type: 'text'; name: string }
 
 const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[] }[] = [
   {
     tier: 'Visionary',
     logoHeight: 250,
     entries: [
+      { type: 'logo', name: 'Badar Family Office', src: logoBadarFam, href: 'http://badarfamilyoffice.com/', fullRow: true },
       { type: 'logo', name: 'ZT Corporate', src: logoZTCorporate, href: 'https://ztcorporate.com/' },
-      { type: 'logo', name: 'Badar Family Office', src: logoBadarFam, href: 'http://badarfamilyoffice.com/' },
       { type: 'logo', name: 'ZT Automotive', src: logoZTAutomotive, href: 'https://www.ztautogroup.com/' },
+      { type: 'logo', name: 'ZT Automotive Collection', src: logoZTACollection, href: 'https://www.ztautogroup.com/' },
       { type: 'logo', name: 'ZT Health', src: logoZTHealth, href: 'https://zthealth.com/' },
     ],
   },
@@ -148,18 +152,23 @@ export default function PartnerWallSection() {
                 <span className="flex-1 max-w-[120px]" style={{ height: 1, background: GOLD, opacity: 0.5 }} />
               </div>
 
-              <div className={tier === 'Visionary' ? 'grid grid-cols-1 lg:grid-cols-4 justify-items-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0' : 'flex flex-wrap justify-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0'}>
+              <div className={tier === 'Visionary' ? `${VISIONARY_GRID} items-center gap-y-8 -mx-4 lg:mx-0` : 'flex flex-wrap justify-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0'}>
                 {entries.map((entry) => {
                   if (entry.type === 'logo') {
+                    const height = `clamp(${logoHeight * 0.6}px, ${(logoHeight / 250) * 40}vw, ${logoHeight}px)`
+                    const entryClassName = tier === 'Visionary'
+                      ? `flex min-w-0 justify-center md:col-span-2 ${entry.fullRow ? 'md:col-start-4' : ''}`
+                      : undefined
                     const logo = (
                       <OptimizedImage
                         src={entry.src}
                         alt={entry.name}
-                        sizes="(min-width: 1024px) 360px, 100vw"
+                        sizes={tier === 'Visionary' ? '(min-width: 1440px) 330px, (min-width: 768px) 25vw, 100vw' : '(min-width: 1024px) 360px, 100vw'}
                         maxWidth={1920}
                         className="max-w-full"
                         style={{
-                          height: `clamp(${logoHeight * 0.6}px, ${(logoHeight / 250) * 40}vw, ${logoHeight}px)`,
+                          height: tier === 'Visionary' ? 'auto' : height,
+                          maxHeight: tier === 'Visionary' ? height : undefined,
                           width: 'auto',
                           objectFit: 'contain',
                           mixBlendMode: 'multiply',
@@ -170,13 +179,19 @@ export default function PartnerWallSection() {
                       />
                     )
 
-                    return entry.href ? (
-                      <a key={entry.name} href={entry.href} target="_blank" rel="noreferrer" aria-label={`Visit ${entry.name}`}>
+                    const sponsorLogo = entry.href ? (
+                      <a key={entry.name} className={entryClassName} href={entry.href} target="_blank" rel="noreferrer" aria-label={`Visit ${entry.name}`}>
                         {logo}
                       </a>
                     ) : (
-                      <div key={entry.name}>{logo}</div>
+                      <div key={entry.name} className={entryClassName}>{logo}</div>
                     )
+
+                    return tier === 'Visionary' && entry.fullRow ? (
+                      <div key={entry.name} className={`${VISIONARY_GRID} col-span-full`}>
+                        {sponsorLogo}
+                      </div>
+                    ) : sponsorLogo
                   }
 
                   return (
