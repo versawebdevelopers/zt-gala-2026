@@ -58,7 +58,7 @@ const GOLD = '#C6A261'
 // Eight desktop columns center the featured logo at the same width as each logo below.
 const VISIONARY_GRID = 'grid grid-cols-1 md:grid-cols-8 gap-x-2 lg:gap-x-6'
 
-type SponsorEntry = { type: 'logo'; name: string; src: string; href?: string; fullRow?: boolean } | { type: 'text'; name: string }
+type SponsorEntry = { type: 'logo'; name: string; src: string; href?: string; fullRow?: boolean; spacingClassName?: string } | { type: 'text'; name: string }
 
 const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[] }[] = [
   {
@@ -67,8 +67,8 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
     entries: [
       { type: 'logo', name: 'Badar Family Office', src: logoBadarFam, href: 'http://badarfamilyoffice.com/', fullRow: true },
       { type: 'logo', name: 'ZT Corporate', src: logoZTCorporate, href: 'https://ztcorporate.com/' },
-      { type: 'logo', name: 'ZT Automotive', src: logoZTAutomotive, href: 'https://www.ztautogroup.com/' },
-      { type: 'logo', name: 'ZT Automotive Collection', src: logoZTACollection, href: 'https://www.ztautogroup.com/' },
+      { type: 'logo', name: 'ZT Automotive', src: logoZTAutomotive, href: 'https://www.ztautogroup.com/', spacingClassName: 'md:-translate-x-1 lg:-translate-x-4' },
+      { type: 'logo', name: 'ZT Automotive Collection', src: logoZTACollection, href: 'https://www.ztautogroup.com/', spacingClassName: 'mt-4 md:mt-0 md:translate-x-1 lg:translate-x-4' },
       { type: 'logo', name: 'ZT Health', src: logoZTHealth, href: 'https://zthealth.com/' },
     ],
   },
@@ -152,12 +152,12 @@ export default function PartnerWallSection() {
                 <span className="flex-1 max-w-[120px]" style={{ height: 1, background: GOLD, opacity: 0.5 }} />
               </div>
 
-              <div className={tier === 'Visionary' ? `${VISIONARY_GRID} items-center gap-y-8 -mx-4 lg:mx-0` : 'flex flex-wrap justify-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0'}>
+              <div className={tier === 'Visionary' ? `${VISIONARY_GRID} items-center gap-y-8 md:gap-y-0 -mx-4 xl:-mx-8` : 'flex flex-wrap justify-center items-center gap-x-6 gap-y-8 -mx-4 lg:mx-0'}>
                 {entries.map((entry) => {
                   if (entry.type === 'logo') {
                     const height = `clamp(${logoHeight * 0.6}px, ${(logoHeight / 250) * 40}vw, ${logoHeight}px)`
                     const entryClassName = tier === 'Visionary'
-                      ? `flex min-w-0 justify-center md:col-span-2 ${entry.fullRow ? 'md:col-start-4' : ''}`
+                      ? `flex min-w-0 justify-center md:col-span-2 ${entry.fullRow ? 'md:col-start-4' : ''} ${entry.spacingClassName ?? ''}`
                       : undefined
                     const logo = (
                       <OptimizedImage
