@@ -47,7 +47,7 @@ import logoOmega25k from '@/imports/25k-OmegaAdvisors.png'
 import logoEnterpriseBank25k from '@/imports/25k-enterpriseBank.png'
 import logoHRSS25k from '@/imports/25k-HRSS.png'
 import logoHollandKnight10k from '@/imports/10k-Holland & Knight Law.png'
-import logoTexasHeritage10k from '@/imports/10k-Texas Heritage Bank-Liberty Capital.png'
+import logoTexasHeritage10k from '@/imports/10k-Texas Heritage National Bank.png'
 import logoUrbanArc10k from '@/imports/10k-Urban Arc Properties.png'
 import logoHigginbotham15k from '@/imports/15k-Higginbotham.png'
 import logoOneStep15k from '@/imports/15k-One Step Dianostic.png'
@@ -121,7 +121,7 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
     logoHeight: 100,
     entries: [
       { type: 'logo', name: 'Holland & Knight', src: logoHollandKnight10k, href: 'https://www.hklaw.com/en' },
-      { type: 'logo', name: 'Texas Heritage Bank - Liberty Capital', src: logoTexasHeritage10k, href: 'https://www.texasheritage.bank/' },
+      { type: 'logo', name: 'Texas Heritage National Bank', src: logoTexasHeritage10k, href: 'https://www.thnb.bank/' },
       { type: 'logo', name: 'Urban Arc Properties', src: logoUrbanArc10k, href: 'https://urbanarcproperties.com/' },
     ],
   },
