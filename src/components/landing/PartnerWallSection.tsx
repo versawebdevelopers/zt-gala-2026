@@ -49,8 +49,12 @@ import logoHRSS25k from '@/imports/25k-HRSS.png'
 import logoHollandKnight10k from '@/imports/10k-Holland & Knight Law.png'
 import logoTexasHeritage10k from '@/imports/10k-Texas Heritage National Bank.png'
 import logoUrbanArc10k from '@/imports/10k-Urban Arc Properties.png'
+import logoUSBank10k from '@/imports/10k-US Bank.png'
+import logoZTPayments10k from '@/imports/10k-ZT Payments.png'
 import logoHigginbotham15k from '@/imports/15k-Higginbotham.png'
+import logoNIS15k from '@/imports/15k-NIS.png'
 import logoOneStep15k from '@/imports/15k-One Step Dianostic.png'
+import logoSimplexMed15k from '@/imports/15k-SimplexMed.png'
 import logoWoodforest15k from '@/imports/15k-Woodforest Bank.png'
 import logoSunflowerBank15k from '@/imports/15k-SunflowerBank.png'
 
@@ -114,6 +118,8 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
       { type: 'logo', name: 'One Step Diagnostic', src: logoOneStep15k, href: 'https://www.onestepdiagnostic.com/' },
       { type: 'logo', name: 'Woodforest Bank', src: logoWoodforest15k, href: 'https://www.woodforest.com/' },
       { type: 'logo', name: 'Sunflower Bank', src: logoSunflowerBank15k, href: 'https://www.sunflowerbank.com/' },
+      { type: 'logo', name: 'NIS', src: logoNIS15k, href: 'https://natimaging.com/' },
+      { type: 'logo', name: 'Simplex', src: logoSimplexMed15k, href: 'https://simplexmed.com/' },
     ],
   },
   {
@@ -123,6 +129,16 @@ const SPONSOR_TIERS: { tier: string; logoHeight: number; entries: SponsorEntry[]
       { type: 'logo', name: 'Holland & Knight', src: logoHollandKnight10k, href: 'https://www.hklaw.com/en' },
       { type: 'logo', name: 'Texas Heritage National Bank', src: logoTexasHeritage10k, href: 'https://www.thnb.bank/' },
       { type: 'logo', name: 'Urban Arc Properties', src: logoUrbanArc10k, href: 'https://urbanarcproperties.com/' },
+      { type: 'logo', name: 'US Bank', src: logoUSBank10k, href: 'https://www.usbank.com/index.html' },
+      { type: 'logo', name: 'ZT Payments', src: logoZTPayments10k, href: 'https://ztpayments.com/' },
+    ],
+  },
+  {
+    tier: 'Supporter',
+    logoHeight: 110,
+    entries: [
+      { type: 'text', name: 'Versa Creative' },
+      { type: 'text', name: 'Stellar Bank' },
     ],
   },
 ]
