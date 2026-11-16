@@ -13,14 +13,8 @@ export default function PerformersSection() {
   return (
     <section id="performers" style={{ background: DEEP, position: 'relative', overflow: 'hidden' }} className="pb-24 pt-0 sm:pt-5 px-0">
       <div className="max-w-7xl mx-auto px-6 lg:px-12" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="text-center mb-16">
-          <p className="hidden text-[13px] tracking-[0.4em] uppercase mb-4 font-light sm:block" style={{ color: GOLD }}>
-            An Evening of Excellence
-          </p>
-        </div>
-
         <div className="mb-16">
-          <p className="text-center text-[16px] tracking-[0.2em] uppercase mb-4 sm:text-left sm:text-[12px] sm:tracking-[0.35em]" style={{ color: GOLD }}>A Special Performance By</p>
+          <p className="text-center text-[16px] tracking-[0.2em] uppercase mb-4 pt-6 sm:pt-0 sm:text-left sm:text-[12px] sm:tracking-[0.35em]" style={{ color: GOLD }}>A Special Performance By</p>
           <div
             className="flex flex-col lg:flex-row overflow-hidden"
             style={{
@@ -59,7 +53,7 @@ export default function PerformersSection() {
           </div>
         </div>
 
-        <div className="flex justify-center sm:justify-end">
+        <div className="flex justify-center">
           <div
             className="flex w-full max-w-[320px] flex-col overflow-hidden sm:w-auto sm:max-w-none sm:flex-row sm:items-stretch"
             style={{
@@ -106,8 +100,7 @@ export default function PerformersSection() {
               />
             </div>
 
-            <div className="flex flex-1 flex-col justify-center p-10 lg:p-14">
-              <p className="mb-6 font-quiche text-4xl sm:text-5xl" style={{ color: CREAM }}>Kim Lee</p>
+            <div className="flex flex-1 flex-col justify-center p-10 lg:p-14" style={{ background: DEEP }}>
               <p className="mb-5 text-[11px] tracking-[0.35em] uppercase" style={{ color: GOLD }}>Bio</p>
               <p className="text-base leading-7 sm:text-sm" style={{ color: 'rgba(252,249,244,0.68)' }}>
                 Los Angeles native, Kim Lee has become one of the most sought after DJ/ Producer / Actress in the business. Kim graduated from Scratch Academy in Los Angeles. From the support and encouragement from Apl De Ap from The Black Eyed Peas, Kim quickly start touring the world from the U.S to Asia and becoming one of the biggest DJ’s in the industry. She has toured and done shows with Steve Aoki, Martin Garrix, Diplo, and Skrillex. Kim also performed along with Cardi B, YG, and Tyga at Fashion Nova Event, 2021 MTV Movie & TV awards, Anastasia Beverly Hills Halloween Party, Budweiser, Johnny Walker, Hennessy, Ultra Japan, Ultra China, Ultra Korea, Life in Color Korea, Mad Decent Boat Party, It’s The Ship, EDC New York, Drai’s in Las Vegas, Marquee Vegas, Tao Las Vegas, Eleven in Miami, and Pacha NYC. Kim is now a residency at the world famous Wynn Nightlife, performing both at Encore Beach Club and XS.
