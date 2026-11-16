@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
   const emitSourcemaps = mode === 'development'
 
   return {
-    base: process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
+    base: process.env.WP_ASSET_BASE || (process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/'),
     define: {
       'import.meta.env.VITE_VERCEL_IMAGE_OPTIMIZATION': JSON.stringify(
         process.env.VERCEL === '1' && !emitSourcemaps ? '1' : '0',
@@ -20,6 +20,7 @@ export default defineConfig(({ mode }) => {
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,
+      manifest: true,
     },
     plugins: [
       react(),

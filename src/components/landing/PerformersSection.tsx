@@ -93,6 +93,7 @@ export default function PerformersSection() {
                 alt="Kim Lee"
                 sizes="(min-width: 1280px) 830px, (min-width: 1024px) 70vw, 155vw"
                 className="absolute inset-0 h-full w-full object-cover object-left"
+                style={{ objectPosition: 'left top' }}
               />
               <div
                 className="absolute inset-0"
