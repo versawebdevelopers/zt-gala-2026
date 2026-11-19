@@ -128,6 +128,12 @@ export default function PerformersSection() {
                 >
                   Brooke Burke
                 </p>
+                <p
+                  className="text-base sm:text-sm leading-relaxed"
+                  style={{ color: "rgba(252,249,244,0.40)" }}
+                >
+                  American TV Personality and Model
+                </p>
               </div>
             </div>
           </div>
@@ -176,14 +182,15 @@ export default function PerformersSection() {
             </div>
 
             <div className="flex flex-col justify-center p-10 lg:p-14 flex-1">
-              <OptimizedImage
-                src={leAnnLogo}
-                alt="LeAnn Rimes"
-                sizes="320px"
-                maxWidth={960}
-                className="mb-6"
-                style={{ width: 320, maxWidth: "100%", mixBlendMode: "screen" }}
-              />
+              <div className="-mx-4 mb-6 lg:-mx-6">
+                <OptimizedImage
+                  src={leAnnLogo}
+                  alt="LeAnn Rimes"
+                  sizes="480px"
+                  maxWidth={960}
+                  style={{ width: 480, maxWidth: "100%", mixBlendMode: "screen" }}
+                />
+              </div>
               <p
                 className="text-[11px] tracking-[0.35em] uppercase mb-5"
                 style={{ color: GOLD }}
@@ -255,14 +262,15 @@ export default function PerformersSection() {
               className="flex flex-1 flex-col justify-center p-10 lg:p-14"
               style={{ background: "#1C1209" }}
             >
-              <OptimizedImage
-                src={kimLogo}
-                alt="Kim Lee"
-                sizes="320px"
-                maxWidth={960}
-                className="mb-6"
-                style={{ width: 320, maxWidth: "100%", mixBlendMode: "screen" }}
-              />
+              <div className="-mx-4 mb-6 lg:-mx-6">
+                <OptimizedImage
+                  src={kimLogo}
+                  alt="Kim Lee"
+                  sizes="480px"
+                  maxWidth={960}
+                  style={{ width: 480, maxWidth: "100%", mixBlendMode: "screen" }}
+                />
+              </div>
               <p
                 className="mb-5 text-[11px] tracking-[0.35em] uppercase"
                 style={{ color: GOLD }}
