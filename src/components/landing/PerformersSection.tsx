@@ -1,6 +1,6 @@
 import chesterPitts from "@/imports/Chester_Pitts-portrait-1.png"
 
-import brookeBurke from "@/imports/BrookeBurke-portrait.png"
+import brookeBurke from "@/imports/BrookeBurke-portrait.webp"
 
 import leAnnRimes from "@/imports/LAR_High-Res-jpgLR_SB_PC_S7_1235_r_copy.jpg"
 
